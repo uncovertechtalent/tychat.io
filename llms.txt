@@ -18,6 +18,7 @@
 - [The Golem Made of English and the Horizon of Consequences](https://uncovertechtalent.com/blog/the-golem-made-of-english/): an agent behaves well only where it can see what its act will cost; failure records, output gates and permissions extend that horizon
 - [The Trap File Is Longer Than the Instruction File](https://uncovertechtalent.com/blog/the-trap-file-is-longer-than-the-instruction-file/): an unattended agent pipeline and its dated failure record; imported experience
 - [Write for the Codec](https://uncovertechtalent.com/blog/write-for-the-codec/): documentation as a wire format between two models
+- [What Operations Already Knows About Running Agents](https://coetzeestefan.substack.com/p/what-operations-already-knows-about): error budgets, reconciliation loops, separation of duties, recovery over prevention, applied to agents
 
 ## Machine behavior (how language models behave, with receipts)
 

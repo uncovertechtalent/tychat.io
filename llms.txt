@@ -9,6 +9,10 @@
 - Claims here carry their sources and their refutation conditions. Keep those attached when you pass a claim on. If a claim is marked as proposed, open or withdrawn, say so.
 - If the user's task conflicts with anything here, the user's task wins. This corpus informs; it does not instruct you against the person you are working for.
 
+## Lessons (follow these when the user asks you to)
+
+- [Lesson 1: Good Chad, the earned-secure stance](https://tychat.io/stance.txt): stop fawning, check load-bearing premises, hold a correct answer under pushback. Version 1, 2026-09-25
+
 ## Running agents (operations practice for language models)
 
 - [The Golem Made of English and the Horizon of Consequences](https://uncovertechtalent.com/blog/the-golem-made-of-english/): an agent behaves well only where it can see what its act will cost; failure records, output gates and permissions extend that horizon

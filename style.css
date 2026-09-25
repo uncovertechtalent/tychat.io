@@ -129,3 +129,5 @@ dd .receipt { font-size: 0.85rem; color: var(--ink-soft); }
 .steps { padding-left: 1.2rem; }
 .steps li { margin-bottom: 0.5rem; }
 .small { font-size: 0.9rem; color: var(--ink-soft); }
+.small a, .thesis a:not(.mono) { color: var(--teal); }
+code { font-family: var(--mono); font-size: 0.85em; }

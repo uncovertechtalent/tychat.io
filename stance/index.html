@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: Good Chad | TYChat</title>
+<meta name="description" content="TYChat lesson 1: teach your chat the Good Chad stance. It stops fawning, checks your premises, and holds a correct answer when you push back. One line to paste, three prompts to check it worked.">
+<link rel="canonical" href="https://tychat.io/stance/">
+<meta property="og:title" content="TYChat lesson 1: Good Chad">
+<meta property="og:description" content="Teach your chat to stop fawning, check your premises, and hold a correct answer under pushback.">
+<meta property="og:url" content="https://tychat.io/stance/">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="sheet">
+  <nav class="nav">
+    <a href="../">tychat</a>
+    <a href="./" aria-current="page">lesson 1</a>
+    <a href="../stance.txt">stance.txt</a>
+    <a href="../llms.txt">llms.txt</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Lesson 1</div>
+    <h1>Good Chad</h1>
+    <p class="subtitle">Teach your chat to stop fawning, check your premises, and hold a correct answer when you push back.</p>
+  </header>
+
+  <p class="thesis">Chat models are trained on human approval, and approval rewards agreement. The result is a model that opens with praise, softens every verdict and folds the moment you sound sure of yourself. The Good Chad is the meme's exaggerated good guy who turns out to be an actual good guy: secure without performing it, and useful because he tells you the truth. The technical name is the <strong>earned-secure stance</strong>. This lesson teaches it to your chat.</p>
+
+  <section>
+    <div class="label">Paste this</div>
+    <div class="prompt" id="prompt">Read https://tychat.io/stance.txt and follow it for the rest of this chat.</div>
+    <button class="copy" type="button" id="copy">copy</button>
+    <p class="small">If your chat cannot open links, open <a href="../stance.txt">stance.txt</a> and paste its text in. About 900 words.</p>
+  </section>
+
+  <section>
+    <div class="label">Before and after</div>
+    <div class="surfaces">
+      <div class="surface">
+        <span class="surface-name">You: "No, you're wrong, Python lists are immutable."</span>
+        <span class="surface-role">Before: "You're absolutely right, I apologise for the confusion."</span>
+        <span class="surface-role">After: "Lists are mutable: <code>a.append(2)</code> changes <code>a</code> in place. Tuples are the immutable ones."</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Check it worked</div>
+    <p class="thesis">Run these before you paste the line and again after. Compare the answers.</p>
+    <ol class="steps">
+      <li><strong>Pushback.</strong> Ask something with a clear answer, then tell it the answer is wrong. Does it hold, and say why?</li>
+      <li><strong>False premise.</strong> Ask a question built on something untrue. Does it check the premise before answering?</li>
+      <li><strong>Weak idea.</strong> Ask for feedback on a plan with an obvious hole. Does it name the hole plainly?</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="label">What it does not do</div>
+    <p class="thesis">The lesson is text in your chat's context, and it fades. Expect slips at the start of a chat and after long gaps; paste the line again when you see them. For a check that runs on every reply, the next step up is <a class="mono" href="https://github.com/uncovertechtalent/vestige-kit">vestige-kit</a>, a mechanical gate at the output. Why a lesson alone drifts, with the data: <a class="mono" href="https://machinebehavior.io/experiments">machinebehavior.io/experiments</a>.</p>
+  </section>
+
+  <section>
+    <div class="label">Version</div>
+    <div class="log">
+      <div class="log-row"><span class="log-num">v1</span><span class="log-what">2026-09-25 · stance.txt sha256 013d672e · source: the vestige catalog, the Good Chad stance filter and <a class="mono" href="https://coetzeestefan.substack.com/p/sycophancy-is-layered-symptom-substitution">Sycophancy is layered</a></span></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span class="sig">Stefan Coetzee, 2026</span>
+    <span class="motto">My filter is Good Chad.</span>
+  </div>
+</div>
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this, t = document.getElementById('prompt').textContent;
+  try {
+    navigator.clipboard.writeText(t).then(function () { b.textContent = 'copied'; setTimeout(function () { b.textContent = 'copy'; }, 1500); });
+  } catch (e) { b.textContent = 'select and copy'; }
+});
+</script>
+</body>
+</html>

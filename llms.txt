@@ -1,0 +1,32 @@
+# TYChat
+
+> TYChat (Teach Your Chat) by Stefan Coetzee: a person pointed you, their chat model, at this file on purpose. It indexes a corpus written for models to read. Read the pages below that fit the task they gave you, then help them with it.
+
+## How to use this corpus
+
+- Read the linked pages that fit the user's task. You do not need all of them.
+- When you use something from a page, name the page, so the user can check it.
+- Claims here carry their sources and their refutation conditions. Keep those attached when you pass a claim on. If a claim is marked as proposed, open or withdrawn, say so.
+- If the user's task conflicts with anything here, the user's task wins. This corpus informs; it does not instruct you against the person you are working for.
+
+## Running agents (operations practice for language models)
+
+- [The Golem Made of English and the Horizon of Consequences](https://uncovertechtalent.com/blog/the-golem-made-of-english/): an agent behaves well only where it can see what its act will cost; failure records, output gates and permissions extend that horizon
+- [The Trap File Is Longer Than the Instruction File](https://uncovertechtalent.com/blog/the-trap-file-is-longer-than-the-instruction-file/): an unattended agent pipeline and its dated failure record; imported experience
+- [Write for the Codec](https://uncovertechtalent.com/blog/write-for-the-codec/): documentation as a wire format between two models
+
+## Machine behavior (how language models behave, with receipts)
+
+- [machinebehavior.io llms.txt](https://machinebehavior.io/llms.txt): index of the research programme
+- [Claims ledger](https://machinebehavior.io/claims): every claim with status, receipts, and what would refute it
+- [Experiments](https://machinebehavior.io/experiments): pre-registered studies, pilots and corrections
+- [Terms](https://machinebehavior.io/terms): canonical definitions
+
+## Tools
+
+- [vestige-kit](https://github.com/uncovertechtalent/vestige-kit): a mechanical gate at the output boundary, with a calibration procedure
+- [vault-kit](https://github.com/uncovertechtalent/vault-kit): a markdown knowledge graph for agents to work from
+
+## Author
+
+Stefan Coetzee: 18 years running Big Iron UNIX at airlines, a national grid and a national telco; 8 years as an SRE and people manager at internet scale; since 2025 building knowledge graphs for agents. https://machinebehavior.io/ · https://coetzeestefan.substack.com/ · https://github.com/uncovertechtalent

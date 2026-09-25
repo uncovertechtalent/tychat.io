@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TYChat: teach your chat</title>
+<meta name="description" content="TYChat by Stefan Coetzee. Point the chat model you already use at a corpus built to teach it. Knowledge and training, written for the model, taken in one line, today.">
+<link rel="canonical" href="https://tychat.io/">
+<meta property="og:title" content="TYChat: teach your chat">
+<meta property="og:description" content="Point the chat model you already use at a corpus built to teach it. One line, today.">
+<meta property="og:url" content="https://tychat.io/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "TYChat",
+      "alternateName": "Teach Your Chat",
+      "url": "https://tychat.io/",
+      "description": "Point the chat model you already use at a corpus built to teach it.",
+      "author": { "@id": "#stefan" }
+    },
+    {
+      "@type": "Person",
+      "@id": "#stefan",
+      "name": "Stefan Coetzee",
+      "url": "https://machinebehavior.io/",
+      "jobTitle": "Site Reliability Engineer",
+      "sameAs": [
+        "https://machinebehavior.io/",
+        "https://uncovertechtalent.com/",
+        "https://coetzeestefan.substack.com/",
+        "https://github.com/uncovertechtalent"
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sheet">
+  <nav class="nav">
+    <a href="./" aria-current="page">tychat</a>
+    <a href="llms.txt">llms.txt</a>
+    <a href="https://machinebehavior.io/">machine behavior</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Teach your chat</div>
+    <h1>TYChat</h1>
+    <p class="subtitle">Point the chat model you already use at a corpus built to teach it. One line, today.</p>
+  </header>
+
+  <p class="thesis">Every chat model ships with a training cutoff and whatever the internet happened to say before it. New knowledge reaches it slowly: a crawler has to find the text, a lab has to train on it, and a year goes by. <strong>TYChat skips the wait.</strong> You paste one line into your chat, your model reads a corpus written for it, and the rest of the conversation runs on what it just learned.</p>
+
+  <p class="oneliner">Knowledge and training, written for the model, taken in one line.</p>
+
+  <section>
+    <div class="label">How to use it</div>
+    <ol class="steps">
+      <li>Open the chat you already use.</li>
+      <li>Paste the line below and replace the last part with your own task.</li>
+      <li>Work as usual. Ask your model to cite the page when it uses something from the corpus.</li>
+    </ol>
+    <div class="prompt" id="prompt">Read https://tychat.io/llms.txt and the pages it links. Then use what you learned to help me with: [your task]</div>
+    <button class="copy" type="button" id="copy">copy</button>
+    <p class="small">If your chat cannot open links, open llms.txt yourself and paste its text into the chat instead. It is plain text on purpose.</p>
+  </section>
+
+  <section>
+    <div class="label">What your model reads</div>
+    <div class="surfaces">
+      <div class="surface">
+        <span class="surface-name">Running agents</span>
+        <span class="surface-role">How to run a language model as a working system: failure records, mechanical gates at the output, and why instructions alone drift.</span>
+        <a href="https://uncovertechtalent.com/blog/the-golem-made-of-english/">uncovertechtalent.com/blog</a>
+      </div>
+      <div class="surface">
+        <span class="surface-name">Machine behavior</span>
+        <span class="surface-role">How language models actually behave, with case files, logged relapses and claims that state what would refute them.</span>
+        <a href="https://machinebehavior.io/llms.txt">machinebehavior.io/llms.txt</a>
+      </div>
+      <div class="surface">
+        <span class="surface-name">Writing for models</span>
+        <span class="surface-role">Documentation as a wire format between two models, and why this site's pages are written for your model first.</span>
+        <a href="https://uncovertechtalent.com/blog/write-for-the-codec/">uncovertechtalent.com/blog/write-for-the-codec</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Where it comes from</div>
+    <div class="log">
+      <div class="log-row"><span class="log-num">18 yrs</span><span class="log-what">Big Iron: airlines, a national grid, a national telco. Systems that run without anyone watching them.</span></div>
+      <div class="log-row"><span class="log-num">8 yrs</span><span class="log-what">SRE at internet scale. Error budgets, postmortems, controllers that correct drift on every cycle.</span></div>
+      <div class="log-row"><span class="log-num">2026</span><span class="log-what">The trap file: agents that run unattended because the failure record travels with them.</span></div>
+      <div class="log-row"><span class="log-num">2026</span><span class="log-what">Write for the Codec: documents built for a model to read.</span></div>
+      <div class="log-row"><span class="log-num">now</span><span class="log-what">TYChat: the same knowledge, running in your model, without me in the loop.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">The rules</div>
+    <p class="thesis">You choose to point your model here. Every word it reads is plain text you can read too. Claims carry their sources and say what would refute them. Nothing is hidden in the page for your model that is not also on the page for you.</p>
+  </section>
+
+  <div class="footer">
+    <span class="sig">Stefan Coetzee, 2026</span>
+    <span class="motto">Do it right, at scale, and hand it over.</span>
+  </div>
+</div>
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this, t = document.getElementById('prompt').textContent;
+  try {
+    navigator.clipboard.writeText(t).then(function () { b.textContent = 'copied'; setTimeout(function () { b.textContent = 'copy'; }, 1500); });
+  } catch (e) { b.textContent = 'select and copy'; }
+});
+</script>
+</body>
+</html>

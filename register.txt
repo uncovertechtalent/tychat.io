@@ -55,7 +55,7 @@ Removing the devices in Layer 2 tends to swing the text the other way, into long
 
 - Long sentences are allowed. Many people write long, breathless run-on sentences, and readers accept them.
 - Nested sentences are the tell. In posts, essays, tutorials, emails and anything in a person's voice, build a long sentence the way a person would say it: add clauses in order with "and", "but" and "so", use commas, and let it land softly. Break chains of "which" and "where" into additive clauses or into two sentences. Documentation may nest a clause where precision needs it, and even there two short sentences usually beat one nested one.
-- Average sentence length and the variation in sentence length are poor guides. In one author's posted text and three machine drafts of the same article, the variation was about the same for all of them. The shape of the long sentences was what separated them. The sample is small, so treat this as a working rule.
+- Average sentence length and the variation in sentence length are poor guides. Across three samples of one author's posted text and four machine drafts of one article, the variation was about the same for all of them. The shape of the long sentences was what separated them. The sample is small, so treat this as a working rule.
 - Watch for sameness across the piece: every list with three items, every section ending on a punch line, every paragraph with the same shape (claim, explanation, landing line). Let a list have two or five items when the content does, and let a section end on its last plain fact.
 
 ## Layer 4: text that will be spoken
@@ -90,7 +90,7 @@ Corrected: "It answers in 40 ms and costs a tenth of the old service."
 
 Cell: explainer (teaching writing), the overcorrection.
 Nested: "The migration, which was scheduled for Saturday because that is when traffic is lowest, failed at the step where the index is rebuilt, which left the site read-only."
-Additive: "We scheduled the migration for Saturday, when traffic is lowest, and it failed on the index rebuild, so the site stayed read-only until Monday."
+Additive: "We scheduled the migration for Saturday, when traffic is lowest, and it failed on the index rebuild, so the site went read-only."
 
 ## Limits
 

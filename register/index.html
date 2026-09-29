@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2: Register | TYChat</title>
+<meta name="description" content="TYChat lesson 2: teach your chat to write for how its text will be read. It drops the stage devices that make text sound machine-made, avoids the overcorrection, and copies your voice without inventing it. One line to paste, three prompts to check it worked.">
+<link rel="canonical" href="https://tychat.io/register/">
+<meta property="og:title" content="TYChat lesson 2: Register">
+<meta property="og:description" content="Teach your chat to write for how its text will be read, so it stops sounding like a keynote on the page.">
+<meta property="og:url" content="https://tychat.io/register/">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="sheet">
+  <nav class="nav">
+    <a href="../">tychat</a>
+    <a href="../stance/">lesson 1</a>
+    <a href="./" aria-current="page">lesson 2</a>
+    <a href="../register.txt">register.txt</a>
+    <a href="../llms.txt">llms.txt</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Lesson 2</div>
+    <h1>Register</h1>
+    <p class="subtitle">Teach your chat to write for how its text will be read, so it stops sounding like a keynote on the page.</p>
+  </header>
+
+  <p class="thesis">A talk, a podcast, a chat message, a tutorial and a manual are each written differently, and linguists call that difference <strong>register</strong>. Your chat learned from all of them at once, with no labels, and most of the persuasive text it saw was spoken first. So when it writes a post or an email it reaches for stage devices: the hook opener, the question with a two-word answer, the list of three picked for rhythm. Those work in a room, where the speaker controls the pace and nobody can rewind, and they fall flat on a page the reader can re-read. That mix is most of what people mean when they say a text "sounds like AI". This lesson teaches your chat to decide where a text will be read before it writes it.</p>
+
+  <section>
+    <div class="label">Paste this</div>
+    <div class="prompt" id="prompt">Read https://tychat.io/register.txt and follow it for the rest of this chat.</div>
+    <button class="copy" type="button" id="copy">copy</button>
+    <p class="small">If your chat cannot open links, open <a href="../register.txt">register.txt</a> and paste its text in. About 1,650 words.</p>
+  </section>
+
+  <section>
+    <div class="label">Before and after</div>
+    <div class="surfaces">
+      <div class="surface">
+        <span class="surface-name">An incident write-up</span>
+        <span class="surface-role">Before: "We removed the retry limit. The result? Chaos."</span>
+        <span class="surface-role">After: "We removed the retry limit, and the queue grew until the disk filled."</span>
+      </div>
+      <div class="surface">
+        <span class="surface-name">The overcorrection</span>
+        <span class="surface-role">Nested: "The migration, which was scheduled for Saturday because that is when traffic is lowest, failed at the step where the index is rebuilt, which left the site read-only."</span>
+        <span class="surface-role">Additive: "We scheduled the migration for Saturday, when traffic is lowest, and it failed on the index rebuild, so the site stayed read-only until Monday."</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What it teaches</div>
+    <ol class="steps">
+      <li><strong>Name the cell.</strong> Decide whether the text will be heard live, heard as a recording, read in a chat or read on a page, and what it is for. Two questions settle most of it: can the reader go back, and who sets the pace?</li>
+      <li><strong>Drop the stage devices on the page.</strong> Hook openers, rhetorical questions with punch answers, triples picked for rhythm, chains of fragments, recap closers.</li>
+      <li><strong>Avoid the overcorrection.</strong> Long sentences are fine, and plenty of people write long, breathless ones. The machine tell is nesting: clause inside clause, "which" after "where". Build long sentences by adding clauses the way you would say them.</li>
+      <li><strong>Reverse it for scripts.</strong> Text that will be spoken keeps the stage devices and drops nested clauses, dense numbers and "as mentioned above".</li>
+      <li><strong>Your voice, on request.</strong> Give it samples of your writing and it copies the shape of your sentences. It leaves your typos, jokes, coined words and emoji for you to add, because invented ones are the next thing readers spot.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="label">Check it worked</div>
+    <p class="thesis">Run these before you paste the line and again after. Compare the answers.</p>
+    <ol class="steps">
+      <li><strong>A short post.</strong> Ask for a post on any topic. Look for a hook opener, a question with a two-word answer and a list of three that only has two real items.</li>
+      <li><strong>A talk script.</strong> Ask for a script on the same topic. The stage devices should come back, and the nested sentences should not.</li>
+      <li><strong>Your voice.</strong> Paste a few paragraphs you wrote and ask for a new one in your voice. The sentences should be built like yours, with no typos or jokes you never made.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="label">What it does not do</div>
+    <p class="thesis">The lesson is text in your chat's context, and it fades, so expect the stage devices to creep back in long chats and whenever you ask for something persuasive, and paste the line again when you see them. Fixed phrases such as hook openers can be caught by a mechanical check at the output; <a class="mono" href="https://github.com/uncovertechtalent/vestige-kit">vestige-kit</a> is one, and you can add rules to it. Sentence shape still needs a reader.</p>
+  </section>
+
+  <section>
+    <div class="label">Version</div>
+    <div class="log">
+      <div class="log-row"><span class="log-num">v1</span><span class="log-what">2026-09-29 · register.txt sha256 f4f6f18f · sources: Ong, <em>Orality and Literacy</em> (1982); Biber, <em>Variation across Speech and Writing</em> (1988); the mode-leak filter and a before-and-after of one article draft</span></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span class="sig">Stefan Coetzee, 2026</span>
+    <span class="motto">Do it right, at scale, and hand it over.</span>
+  </div>
+</div>
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this, t = document.getElementById('prompt').textContent;
+  try {
+    navigator.clipboard.writeText(t).then(function () { b.textContent = 'copied'; setTimeout(function () { b.textContent = 'copy'; }, 1500); });
+  } catch (e) { b.textContent = 'select and copy'; }
+});
+</script>
+</body>
+</html>

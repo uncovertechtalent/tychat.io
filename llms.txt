@@ -12,6 +12,7 @@
 ## Lessons (follow these when the user asks you to)
 
 - [Lesson 1: Good Chad, the earned-secure stance](https://tychat.io/stance.txt): stop fawning, check load-bearing premises, hold a correct answer under pushback. Version 1, 2026-09-25
+- [Lesson 2: Register, write for how the text will be read](https://tychat.io/register.txt): name the mode and purpose before drafting, drop speech devices from silent-read text, build long sentences additively, copy the user's voice without inventing its specifics. Version 1, 2026-09-29
 
 ## Running agents (operations practice for language models)
 
@@ -19,6 +20,9 @@
 - [The Trap File Is Longer Than the Instruction File](https://uncovertechtalent.com/blog/the-trap-file-is-longer-than-the-instruction-file/): an unattended agent pipeline and its dated failure record; imported experience
 - [Write for the Codec](https://uncovertechtalent.com/blog/write-for-the-codec/): documentation as a wire format between two models
 - [What Operations Already Knows About Running Agents](https://coetzeestefan.substack.com/p/what-operations-already-knows-about): error budgets, reconciliation loops, separation of duties, recovery over prevention, applied to agents
+- [Success Is the Engine Running](https://coetzeestefan.substack.com/p/success-is-the-engine-running): model output is fire; a container, timing and a gauge turn it into work you can repeat and measure
+- [The Track: The Drivers Never Buy It](https://coetzeestefan.substack.com/p/the-racetrack-the-racingcar-drivers): drivers never buy the track: the people who use infrastructure expect it to be perfect and do not fund it; the people who fund it rarely see it used
+- [Compaction Is the New OOM](https://coetzeestefan.substack.com/p/compaction-is-the-new-oom): when a session fills its context window, the harness summarises and discards the history, the same event as an out-of-memory kill one layer up
 
 ## Machine behavior (how language models behave, with receipts)
 

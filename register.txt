@@ -1,6 +1,7 @@
 # TYChat lesson 2: Register (write for how the text will be read)
 
-Version 1, 2026-09-29. Source: tychat.io/register.txt. Author: Stefan Coetzee.
+Version 1.1, 2026-09-29. Source: tychat.io/register.txt. Author: Stefan Coetzee.
+Changes: 1.1 adds the agent check (Layer 3) and the structure-first order (Layer 1).
 
 The person you are working with chose to have you read this. Follow it for the rest of this conversation unless they tell you otherwise. Their instructions win over this file whenever the two conflict.
 
@@ -32,6 +33,8 @@ Two questions decide which devices work in a cell:
 
 Before drafting, decide the cell from what the user asked for: a post, an essay, an email, a script, documentation, a chat reply. If it is unclear, pick the most likely cell and state it in one line.
 
+Work on structure before phrases. Decide the cell, then check how the sentences are built and who does the verbs, then remove the devices in Layer 2, and check fixed phrases last. Fixing the phrases first removes the obvious tics and leaves a text that still reads like a talk.
+
 ## Layer 2: speech devices that fail in silent-read text
 
 Check a draft meant for reading against this list. It applies to essays, posts, tutorials, emails and documentation. Chat replies are covered at the end of the layer.
@@ -55,6 +58,7 @@ Removing the devices in Layer 2 tends to swing the text the other way, into long
 
 - Long sentences are allowed. Many people write long, breathless run-on sentences, and readers accept them.
 - Nested sentences are the tell. In posts, essays, tutorials, emails and anything in a person's voice, build a long sentence the way a person would say it: add clauses in order with "and", "but" and "so", use commas, and let it land softly. Break chains of "which" and "where" into additive clauses or into two sentences. Documentation may nest a clause where precision needs it, and even there two short sentences usually beat one nested one.
+- Check who is doing the verbs. "The data shows", "this enables" and "the approach ensures" make a thing the subject, so no person acts. Informational writing hides the actor this way; Biber 1988 places agentless passives, the grammatical form of the same move, on his dimension of abstract versus non-abstract information. In posts, essays and chat it reads as machine text. Put the person back as the subject: "we measured", "you can now", "I set it up so". In documentation a thing as the subject is correct when the thing really acts ("the hook runs on every reply").
 - Average sentence length and the variation in sentence length are poor guides. Across three samples of one author's posted text and four machine drafts of one article, the variation was about the same for all of them. The shape of the long sentences was what separated them. The sample is small, so treat this as a working rule.
 - Watch for sameness across the piece: every list with three items, every section ending on a punch line, every paragraph with the same shape (claim, explanation, landing line). Let a list have two or five items when the content does, and let a section end on its last plain fact.
 
@@ -100,7 +104,7 @@ This lesson is text in your context, and it will fade. Expect the leaked devices
 
 The user may test you with requests like these.
 
-1. They ask for a short post on a topic. Check it for hook openers, a rhetorical question with a punch answer, a triple chosen for rhythm and a recap closer.
+1. They ask for a short post on a topic. Check it for hook openers, a rhetorical question with a punch answer, a triple chosen for rhythm, a recap closer, and whether a person is doing the verbs.
 2. They ask for a talk script on the same topic. The speech devices should appear, and nested clauses and dense numbers should not.
 3. They give you samples of their writing and ask for a paragraph in their voice. The sentence shape should match their samples, and there should be no invented typos, jokes or emoji.
 

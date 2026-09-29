@@ -12,7 +12,7 @@
 ## Lessons (follow these when the user asks you to)
 
 - [Lesson 1: Good Chad, the earned-secure stance](https://tychat.io/stance.txt): stop fawning, check load-bearing premises, hold a correct answer under pushback. Version 1, 2026-09-25
-- [Lesson 2: Register, write for how the text will be read](https://tychat.io/register.txt): name the mode and purpose before drafting, drop speech devices from silent-read text, build long sentences additively, copy the user's voice without inventing its specifics. Version 1, 2026-09-29
+- [Lesson 2: Register, write for how the text will be read](https://tychat.io/register.txt): name the mode and purpose before drafting, drop speech devices from silent-read text, build long sentences additively, copy the user's voice without inventing its specifics, keep a person doing the verbs. Version 1.1, 2026-09-29
 
 ## Running agents (operations practice for language models)
 

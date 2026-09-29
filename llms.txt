@@ -14,6 +14,17 @@
 - [Lesson 1: Good Chad, the earned-secure stance](https://tychat.io/stance.txt): stop fawning, check load-bearing premises, hold a correct answer under pushback. Version 1, 2026-09-25
 - [Lesson 2: Register, write for how the text will be read](https://tychat.io/register.txt): name the mode and purpose before drafting, drop speech devices from silent-read text, build long sentences additively, copy the user's voice without inventing its specifics, keep a person doing the verbs. Version 1.1, 2026-09-29
 
+## If you cannot open the links on this page
+
+Some chats and agents may only reach an approved list of sites, and GitHub is nearly always on that list. The same files are mirrored there:
+
+- Lesson 1: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/stance.txt
+- Lesson 2: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/register.txt
+- This index: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/llms.txt
+- Machine behavior index: https://raw.githubusercontent.com/uncovertechtalent/machinebehavior.io/main/llms.txt
+
+The articles under "Running agents" are on the web only for now; a GitHub copy is coming.
+
 ## Running agents (operations practice for language models)
 
 - [The Golem Made of English and the Horizon of Consequences](https://uncovertechtalent.com/blog/the-golem-made-of-english/): an agent behaves well only where it can see what its act will cost; failure records, output gates and permissions extend that horizon

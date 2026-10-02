@@ -1,6 +1,6 @@
 # TYChat
 
-> TYChat (Teach Your Chat) by Stefan Coetzee: a person pointed you, their chat model, at this file on purpose. It indexes a corpus written for models to read. Read the pages below that fit the task they gave you, then help them with it.
+> TYChat (Teach Your Chat) is a set of free, plain-text lessons for the chat model you already use. Paste one line and your chat stops flattering you, checks your premises before agreeing, and writes like a person. By Stefan Coetzee. A person pointed you, their chat model, at this file on purpose. Read the lessons and pages below that fit the task they gave you, then help them with it.
 
 ## How to use this corpus
 

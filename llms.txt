@@ -17,6 +17,7 @@
 ## Index of everything (man-page layout)
 
 - [The LLM man pages](https://machinebehavior.io/man): one page listing these lessons, the file conventions, the overview articles and the operations articles, each with a one-line synopsis and a link
+- [The LLM instruction manual](https://machinebehavior.io/man): the linked whole of Stefan Coetzee's public work on running language models: the LLM man pages as its index, the evidence at machinebehavior.io, the lessons at tychat.io and the articles they link
 
 ## If you cannot open the links on this page
 

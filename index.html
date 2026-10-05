@@ -123,6 +123,16 @@
   </section>
 
   <section>
+    <div class="label">How much context it uses</div>
+    <div class="log">
+      <div class="log-row"><span class="log-num">~1,250</span><span class="log-what">tokens for lesson 1 (Good Chad), about 925 words</span></div>
+      <div class="log-row"><span class="log-num">~2,350</span><span class="log-what">tokens for lesson 2 (Register), about 1,800 words</span></div>
+      <div class="log-row"><span class="log-num">~1,250</span><span class="log-what">tokens for this site's llms.txt index, plus the pages your chat then opens</span></div>
+    </div>
+    <p class="small">Both lessons together use under 3% of a 128,000-token context window. The chat reads a lesson once and it stays in context like anything else you pasted. In a subscription chat app that costs you nothing extra. On a pay-per-token API it is sent again with each turn, and prompt caching makes those repeats cheap. Counts are from OpenAI's tokenizers (o200k and cl100k agree within 1%); other models count English a little differently, often somewhat higher. Start with lesson 1 if you want the smallest dose.</p>
+  </section>
+
+  <section>
     <div class="label">The rules</div>
     <p class="thesis">You choose to point your model here. Every word it reads is plain text you can read too. Claims carry their sources and say what would refute them. Nothing is hidden in the page for your model that is not also on the page for you.</p>
   </section>

@@ -1,0 +1,114 @@
+{
+ "site": "tychat.io",
+ "owner": "Stefan Coetzee",
+ "base_url": "https://tychat.io",
+ "repo_url": "https://github.com/uncovertechtalent/tychat.io",
+ "action_repo_url": "https://github.com/uncovertechtalent/machinebehavior.io",
+ "rerun_command": "python3 ../machinebehavior.io/.github/actions/conformity/run.py --root . --config conformity/site-tier.json --requirements conformity/requirements.json --out conformity --dry-run",
+ "deploy_gated": false,
+ "deploy_gated_since": null,
+ "deploy_gated_note": "not yet gated: Pages deploys from the branch; the switch to workflow deploy follows a green dry run",
+ "schedule": {
+  "cron": "27 6 * * 1",
+  "interval_days": 7,
+  "note": "Mondays 06:27 UTC"
+ },
+ "rule_table": {
+  "source": "https://github.com/uncovertechtalent/vestige-kit/blob/main/hooks/vestige-patterns.js",
+  "source_commit": "dc36b9c",
+  "vendored": "machinebehavior.io/.github/actions/conformity/rules/vestige-patterns.js",
+  "sha256": "ee94ff54d7164e7c5a1557ab9bd3fbf72bc3ca69b2e6521c385e535504565629",
+  "vendored_on": "2026-10-07"
+ },
+ "tiers": {
+  "praise-opener": "warn",
+  "service-closer": "block",
+  "filler-idiom": "block",
+  "hook-opener": "block"
+ },
+ "false_positive_tests": [
+  {
+   "rule": "praise-opener",
+   "date": "2026-10-07",
+   "corpus": "site pages (13 files) and the author's own prose in the vault: articles/*/draft.md, pillars/**/*.md, work-kb/frameworks/*.md (1,248 files)",
+   "exemptions": "scan-runner.js: code, blockquote, q, mono spans, double-quoted spans",
+   "hits": 4,
+   "legitimate": 4,
+   "examples": "\"interesting question\" and \"interesting point\" used as ordinary adjectives in pillar notes",
+   "decision": "warn tier on the site tier until the regex is tightened to openers only"
+  },
+  {
+   "rule": "service-closer",
+   "date": "2026-10-07",
+   "corpus": "as above",
+   "exemptions": "as above",
+   "hits": 0,
+   "legitimate": 0,
+   "decision": "block"
+  },
+  {
+   "rule": "filler-idiom",
+   "date": "2026-10-07",
+   "corpus": "as above",
+   "exemptions": "as above",
+   "hits": 0,
+   "legitimate": 0,
+   "decision": "block"
+  },
+  {
+   "rule": "hook-opener",
+   "date": "2026-10-07",
+   "corpus": "as above; earlier record in the rule table: 0 hits across 1,282 markdown files",
+   "exemptions": "as above",
+   "hits": 0,
+   "legitimate": 0,
+   "decision": "block"
+  }
+ ],
+ "false_positive_tests_note": "Recorded on machinebehavior.io over the site pages and the author's prose corpus (2026-10-07); the tychat.io pages were added to the corpus on the first dry run (this file's deploy_gated_since date).",
+ "placeholder_pattern": "\\*\\[[^\\]]*\\]\\*|\\[(?:Voice pass|To be filled|TODO|TBD)[^\\]]*\\]|\\bTODO\\b|\\bTBD\\b|\\bLINK PENDING\\b",
+ "pages_excluded_from_scan": [
+  "404.html"
+ ],
+ "text_files": [],
+ "text_files_note": "stance.txt, register.txt and agents.txt quote fawn phrases and stage devices on purpose (they teach a model what to drop); scanning them would flag the lesson for teaching the rule. Excluded with this reason; llms.txt is scanned.",
+ "require_root_absolute_links": false,
+ "self_assessment_label": "Self-assessment, not a certification",
+ "retention": {
+  "run_records": "GitHub Actions artifacts, 90 days",
+  "history": "conformity/latest.json in git, indefinite",
+  "note": "CC-11.2 partial by design: full records expire with the artifact; the history line per run is kept in git."
+ },
+ "freshness_interval_days": 90,
+ "links": {
+  "draft": "https://machinebehavior.io/continuous-conformity-self-assessment/"
+ },
+ "page": {
+  "site_title": "TYChat",
+  "nav": [
+   [
+    "tychat",
+    "/"
+   ],
+   [
+    "stance",
+    "/stance/"
+   ],
+   [
+    "register",
+    "/register/"
+   ],
+   [
+    "agents",
+    "/agents/"
+   ],
+   [
+    "llms.txt",
+    "/llms.txt"
+   ]
+  ],
+  "footer_sig": "Stefan Coetzee, 2026",
+  "footer_motto": "The receipts are the argument.",
+  "stylesheet": "/style.css"
+ }
+}

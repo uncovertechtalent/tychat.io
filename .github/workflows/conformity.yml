@@ -1,0 +1,85 @@
+name: Conformity
+
+# Continuous conformity, site tier, for tychat.io. The checks come from the
+# composite action in uncovertechtalent/machinebehavior.io. They run on every
+# push to main before the Pages deploy, weekly, and by hand. A failing check
+# blocks the deploy and the previous build stays live.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "27 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: conformity-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  conformity:
+    name: Conformity checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Run the checks
+        uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@main
+        with:
+          root: .
+          config: conformity/site-tier.json
+          requirements: conformity/requirements.json
+          out: conformity
+
+      - name: Commit latest.json and the page
+        run: |
+          git config user.name "conformity-bot"
+          git config user.email "conformity-bot@users.noreply.github.com"
+          git add conformity/latest.json conformity/index.html
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+          else
+            git commit -m "conformity: run $(date -u +%Y-%m-%dT%H:%M:%SZ) (${{ github.event_name }}) [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Gate
+        run: |
+          result=$(cat conformity/.result)
+          echo "overall: $result"
+          if [ "$result" != "pass" ]; then
+            echo "::error::conformity checks failed; deploy blocked, previous build stays live"
+            exit 1
+          fi
+
+  deploy:
+    name: Deploy to Pages
+    needs: conformity
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout (after the bot commit)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

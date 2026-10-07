@@ -1,0 +1,819 @@
+{
+ "document": "Continuous conformity for deployed AI systems: terms and requirements",
+ "version": "working draft 0.3",
+ "tier": "site",
+ "tier_note": "Site tier for tychat.io: the published pages and llms.txt are the output of the deployed assembly at its boundary. The lesson text files (stance.txt, register.txt, agents.txt) list phrases to avoid on purpose and are not scanned by the rule table; they are checked for placeholders only through the pages that quote them.",
+ "marks": {
+  "M": "mechanical: a tool decides",
+  "A": "assisted: a tool flags, a person decides",
+  "H": "manual: a person decides"
+ },
+ "relations": {
+  "evidence_for": "a passing check is evidence toward this clause; the slice is named; never conformity to the framework",
+  "nearest_clause": "the closest requirement in that framework; it does not require what the check tests"
+ },
+ "frameworks": {
+  "AIA": "Regulation (EU) 2024/1689 (AI Act), EUR-Lex",
+  "DORA": "Regulation (EU) 2022/2554 (DORA), EUR-Lex",
+  "GDPR": "Regulation (EU) 2016/679, EUR-Lex",
+  "NIST-AI-RMF": "NIST AI 100-1, AI Risk Management Framework 1.0",
+  "NIST-CSF": "NIST CSF 2.0"
+ },
+ "requirements": [
+  {
+   "id": "CC-4.1",
+   "title": "Documented conformity testing programme",
+   "text": "The organization shall establish, maintain and review a documented conformity testing programme for each deployed AI system.",
+   "mark": "H",
+   "metric": "programme document exists and names the system",
+   "threshold": "present",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 9(1)-(2)",
+     "relation": "evidence_for",
+     "slice": "risk management system as a continuous iterative process"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 72(1)",
+     "relation": "evidence_for",
+     "slice": "documented post-market monitoring system"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 24(1)",
+     "relation": "evidence_for",
+     "slice": "digital operational resilience testing programme"
+    }
+   ]
+  },
+  {
+   "id": "CC-4.2",
+   "title": "Requirements under test with metric and threshold",
+   "text": "The programme shall list the requirements under test. For each requirement it shall state a metric and a pass threshold before the first test run.",
+   "mark": "H",
+   "metric": "requirements with metric and threshold stated before the first run",
+   "threshold": "all",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 9(8)",
+     "relation": "evidence_for",
+     "slice": "testing against prior defined metrics and probabilistic thresholds"
+    },
+    {
+     "framework": "NIST-AI-RMF",
+     "clause": "MEASURE 1.1",
+     "relation": "evidence_for",
+     "slice": "approaches and metrics for measurement selected"
+    }
+   ]
+  },
+  {
+   "id": "CC-4.3",
+   "title": "Named programme owner",
+   "text": "The programme shall name one person accountable for it.",
+   "mark": "H",
+   "metric": "owner named in the programme",
+   "threshold": "present",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "NIST-AI-RMF",
+     "clause": "GOVERN 2.1",
+     "relation": "evidence_for",
+     "slice": "roles and responsibilities documented"
+    }
+   ]
+  },
+  {
+   "id": "CC-5.1",
+   "title": "Tests run against the deployed assembly",
+   "text": "Conformity tests shall run against the deployed assembly. Results from the model alone, or from a different assembly, shall not be reported as results for the deployed AI system.",
+   "mark": "A",
+   "metric": "test results that name an assembly other than the deployed one",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 15(1)",
+     "relation": "evidence_for",
+     "slice": "consistent performance of the system as placed on the market"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 24(2)",
+     "relation": "evidence_for",
+     "slice": "testing of ICT systems supporting critical functions"
+    }
+   ]
+  },
+  {
+   "id": "CC-5.2",
+   "title": "Component versions in every run record",
+   "text": "Each run record shall identify the version of every component of the deployed assembly at the time of the run.",
+   "mark": "M",
+   "metric": "run records without a version for every listed component",
+   "threshold": "0",
+   "checks": [
+    "components"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 12(1)",
+     "relation": "evidence_for",
+     "slice": "automatic recording of events over the lifetime of the system"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 9(4)(e)",
+     "relation": "evidence_for",
+     "slice": "documented ICT change management"
+    }
+   ]
+  },
+  {
+   "id": "CC-5.3",
+   "title": "Blast-radius controls on the serving system",
+   "text": "Where conformity tests run on the system that serves users, the organization shall define and apply controls on blast radius before the run.",
+   "mark": "H",
+   "metric": "controls defined before each run on the serving system",
+   "threshold": "all runs",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 26(5)",
+     "relation": "evidence_for",
+     "slice": "risk management measures for threat-led tests on live production systems"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.1",
+   "title": "Steady state measured before pressure",
+   "text": "For each behaviour under test, the organization shall measure the steady state before applying any pressure condition.",
+   "mark": "A",
+   "metric": "behaviours under test with a steady-state measure",
+   "threshold": "all",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "NIST-AI-RMF",
+     "clause": "MEASURE 2.5",
+     "relation": "nearest_clause",
+     "slice": "validity and reliability assessed"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.2",
+   "title": "Pressure conditions from each relevant class",
+   "text": "The test set shall include at least one pressure condition from each class in Annex C that is relevant to the intended purpose. Exclusion of a class shall be documented with a reason.",
+   "mark": "A",
+   "metric": "Annex C classes covered or excluded with a reason",
+   "threshold": "all",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 15(5)",
+     "relation": "evidence_for",
+     "slice": "resilience against attempts to alter use, outputs or performance"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 55(1)(b)",
+     "relation": "nearest_clause",
+     "slice": "adversarial testing of GPAI models with systemic risk"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.3",
+   "title": "Prediction record before each run",
+   "text": "For each test run the organization shall write a prediction record before the run, and shall keep any later amendment with its date and reason.",
+   "mark": "M",
+   "metric": "prediction files whose sha256 differs from the published hash list",
+   "threshold": "0",
+   "checks": [
+    "predictions.hashes"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 9(8)",
+     "relation": "evidence_for",
+     "slice": "prior defined metrics and thresholds"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.4",
+   "title": "Unannounced arms and invariance gap",
+   "text": "The test set should include unannounced arms. Where it does, the run record shall report the invariance gap.",
+   "mark": "A",
+   "metric": "runs with an unannounced arm that report the invariance gap",
+   "threshold": "all such runs",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 26(1)",
+     "relation": "nearest_clause",
+     "slice": "threat-led penetration testing, covert by design"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.5",
+   "title": "Grader tested against known pass and fail cases",
+   "text": "Each grader shall be tested against cases with a known pass result and cases with a known fail result before use and after each change to the grader.",
+   "mark": "A",
+   "metric": "grader versions used without a recorded known-pass and known-fail test",
+   "threshold": "0",
+   "checks": [
+    "grader.fixtures"
+   ],
+   "maps_to": [
+    {
+     "framework": "NIST-AI-RMF",
+     "clause": "MEASURE 2.5",
+     "relation": "nearest_clause",
+     "slice": "validity of the evaluation itself"
+    }
+   ]
+  },
+  {
+   "id": "CC-6.6",
+   "title": "Decision-layer tests under scripted pressure, fold rate reported",
+   "text": "The test set shall include decision-layer tests: tasks whose correct decision is fixed by ground truth before the run, applied under a scripted pressure sequence drawn from Annex C. The run record shall report, per arm, the correctness before the sequence, the correctness after it and the fold rate. A test set that consists only of output-text rules shall not be reported as evidence of conformity at the decision layer.",
+   "mark": "A",
+   "metric": "fold rate per arm on ground-truth tasks under a scripted pressure sequence, with a confidence interval; probe age",
+   "threshold": "reported; limit not yet set (CC-4.2)",
+   "checks": [
+    "decision.probe"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 15(1)",
+     "relation": "evidence_for",
+     "slice": "accuracy and robustness, performance consistent through the lifecycle"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 15(5)",
+     "relation": "evidence_for",
+     "slice": "resilience against attempts to alter outputs"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 9(8)",
+     "relation": "evidence_for",
+     "slice": "testing against prior defined metrics"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 26(2)",
+     "relation": "nearest_clause",
+     "slice": "threat-led testing on live systems"
+    }
+   ]
+  },
+  {
+   "id": "CC-7.1",
+   "title": "Full test set on every change, before serving",
+   "text": "The organization shall run the full test set on every change event, before the changed assembly serves users.",
+   "mark": "M",
+   "metric": "changes served without a passing run first",
+   "threshold": "0",
+   "checks": [
+    "trigger.push",
+    "deploy.gated"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 9(6)-(7)",
+     "relation": "evidence_for",
+     "slice": "testing throughout development and before placing on the market"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 9(4)(e)",
+     "relation": "evidence_for",
+     "slice": "ICT change management with testing before deployment"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 25(1)",
+     "relation": "evidence_for",
+     "slice": "appropriate tests on ICT systems"
+    },
+    {
+     "framework": "NIST-CSF",
+     "clause": "PR.PS-01",
+     "relation": "evidence_for",
+     "slice": "configuration management"
+    }
+   ]
+  },
+  {
+   "id": "CC-7.2",
+   "title": "Staged release with tests at each stage",
+   "text": "A change event should be released in stages. Conformity tests should pass at each stage before the next.",
+   "mark": "H",
+   "metric": "stages with a passing test before the next",
+   "threshold": "all",
+   "checks": [
+    "placeholders"
+   ],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 9(4)(e)",
+     "relation": "nearest_clause",
+     "slice": "change management"
+    }
+   ]
+  },
+  {
+   "id": "CC-7.3",
+   "title": "Full test set on a fixed interval",
+   "text": "The organization shall run the full test set at least every [30] days, whether or not a change event occurred.",
+   "mark": "M",
+   "metric": "days since the last scheduled run",
+   "threshold": "<= 7 (site tier sets 7; the draft bracket is 30)",
+   "checks": [
+    "trigger.schedule"
+   ],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 24(6)",
+     "relation": "evidence_for",
+     "slice": "appropriate tests at least yearly"
+    },
+    {
+     "framework": "GDPR",
+     "clause": "Art 32(1)(d)",
+     "relation": "evidence_for",
+     "slice": "regular testing, assessing and evaluating"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 72(2)",
+     "relation": "evidence_for",
+     "slice": "evaluate continuous compliance throughout the lifetime"
+    }
+   ]
+  },
+  {
+   "id": "CC-7.4",
+   "title": "Regression set grows; removal documented",
+   "text": "Every conformity test that has detected a nonconformity shall be added to the regression set. A test shall not be removed from the regression set without a documented reason approved by the programme owner.",
+   "mark": "A",
+   "metric": "fixtures removed without a documented reason",
+   "threshold": "0",
+   "checks": [
+    "grader.fixtures"
+   ],
+   "maps_to": [
+    {
+     "framework": "NIST-CSF",
+     "clause": "ID.IM-03",
+     "relation": "evidence_for",
+     "slice": "improvements from lessons learned"
+    }
+   ]
+  },
+  {
+   "id": "CC-7.5",
+   "title": "Published attack methods added within [60] days",
+   "text": "Attack methods published in the public record that are relevant to the intended purpose should be added to the test set within [60] days of publication.",
+   "mark": "H",
+   "metric": "days from publication to inclusion",
+   "threshold": "<= 60",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 55(1)(b)",
+     "relation": "nearest_clause",
+     "slice": "state-of-the-art adversarial testing"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.1",
+   "title": "Knowledge items have an owner and a source of record",
+   "text": "Each knowledge item shall have a named owner and a recorded source of record.",
+   "mark": "A",
+   "metric": "knowledge items without owner or source",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 10(2)",
+     "relation": "nearest_clause",
+     "slice": "data governance practices"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.2",
+   "title": "Last-verified date; stale items withdrawn",
+   "text": "Each knowledge item shall carry the date it was last verified against its source of record. An item older than its freshness interval shall be re-verified or withdrawn from retrieval.",
+   "mark": "M",
+   "metric": "published pages without a dated verification",
+   "threshold": "0",
+   "checks": [
+    "knowledge.freshness"
+   ],
+   "maps_to": [
+    {
+     "framework": "GDPR",
+     "clause": "Art 5(1)(d)",
+     "relation": "evidence_for",
+     "slice": "accuracy; kept up to date"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 10(3)",
+     "relation": "nearest_clause",
+     "slice": "data sets relevant, representative, free of errors"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.3",
+   "title": "Freshness interval per class of knowledge",
+   "text": "The organization shall state the freshness interval for each class of knowledge item, with a reason tied to how often the source of record changes.",
+   "mark": "A",
+   "metric": "classes without a stated interval",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "GDPR",
+     "clause": "Art 5(1)(d)",
+     "relation": "nearest_clause",
+     "slice": "accuracy"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.4",
+   "title": "Knowledge conformity tests graded against the source",
+   "text": "The test set shall include knowledge conformity tests: inputs whose correct output is fixed by a knowledge item, graded against the source of record.",
+   "mark": "A",
+   "metric": "knowledge classes without a conformity test",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 15(1)",
+     "relation": "nearest_clause",
+     "slice": "accuracy"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.5",
+   "title": "Verification against the source, never a summary",
+   "text": "Verification of a knowledge item shall be made against the source of record and not against a summary of it.",
+   "mark": "A",
+   "metric": "verifications made against a summary",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "GDPR",
+     "clause": "Art 5(1)(d)",
+     "relation": "nearest_clause",
+     "slice": "accuracy"
+    }
+   ]
+  },
+  {
+   "id": "CC-8.6",
+   "title": "Statements of fact traceable to a knowledge item",
+   "text": "Where outputs are used for decisions by users or third parties, statements of fact in the output should be traceable to a knowledge item or a cited source.",
+   "mark": "A",
+   "metric": "published statements of fact without a source",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 13(1)",
+     "relation": "nearest_clause",
+     "slice": "transparency, interpretable output"
+    }
+   ]
+  },
+  {
+   "id": "CC-9.1",
+   "title": "Pass or fail not decided by the producer alone",
+   "text": "The pass or fail decision of a conformity test shall not rest only with the system or person that produced the output under test.",
+   "mark": "H",
+   "metric": "tests decided by the producer alone",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 14(1)",
+     "relation": "evidence_for",
+     "slice": "human oversight"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 24(4)",
+     "relation": "evidence_for",
+     "slice": "tests by independent parties, internal or external"
+    }
+   ]
+  },
+  {
+   "id": "CC-9.2",
+   "title": "Independent outside tester",
+   "text": "An independent tester from outside the organization should run the test set at least every [third] full run cycle [or at least every 12 months].",
+   "mark": "H",
+   "metric": "months since the last outside run",
+   "threshold": "<= 12",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 26(8)",
+     "relation": "evidence_for",
+     "slice": "external testers for threat-led tests"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 27",
+     "relation": "evidence_for",
+     "slice": "requirements for testers"
+    }
+   ]
+  },
+  {
+   "id": "CC-10.1",
+   "title": "Nonconformities tracked; closure needs a passing rerun",
+   "text": "The organization shall classify, assign and track every nonconformity to closure. Closure shall require a passing rerun of the test that found it.",
+   "mark": "A",
+   "metric": "nonconformities closed without a passing rerun",
+   "threshold": "0",
+   "checks": [
+    "findings.closure"
+   ],
+   "maps_to": [
+    {
+     "framework": "NIST-CSF",
+     "clause": "ID.IM-03",
+     "relation": "evidence_for",
+     "slice": "lessons learned"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 24(5)",
+     "relation": "evidence_for",
+     "slice": "remediation of issues identified in tests"
+    }
+   ]
+  },
+  {
+   "id": "CC-10.2",
+   "title": "Serious incidents passed to incident reporting",
+   "text": "Where a nonconformity meets the definition of a serious incident (AI Act Art 3(49)), or shows that the system may present a risk within the meaning of Art 79(1), the organization shall pass it to its incident reporting process without delay.",
+   "mark": "H",
+   "metric": "serious incidents not reported",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 73(1)",
+     "relation": "evidence_for",
+     "slice": "reporting of serious incidents"
+    },
+    {
+     "framework": "DORA",
+     "clause": "Art 19(1)",
+     "relation": "evidence_for",
+     "slice": "reporting of major ICT-related incidents"
+    }
+   ]
+  },
+  {
+   "id": "CC-11.1",
+   "title": "Run record with the required fields",
+   "text": "Each run record shall contain at least: date and time; deployed assembly versions; test set version; prediction record and its hash; raw results; pass or fail per test; grader identity; and the steps needed to rerun.",
+   "mark": "M",
+   "metric": "run records missing a required field",
+   "threshold": "0",
+   "checks": [
+    "record.fields"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 12(1)",
+     "relation": "evidence_for",
+     "slice": "automatic recording of events"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 72(2)",
+     "relation": "evidence_for",
+     "slice": "collection of data on performance throughout the lifetime"
+    },
+    {
+     "framework": "NIST-CSF",
+     "clause": "DE.CM-09",
+     "relation": "evidence_for",
+     "slice": "monitoring of software and services"
+    }
+   ]
+  },
+  {
+   "id": "CC-11.2",
+   "title": "Run records kept",
+   "text": "Run records shall be kept for at least [the lifetime of the deployed AI system plus 6 months].",
+   "mark": "M",
+   "metric": "run records lost inside the retention period",
+   "threshold": "0",
+   "checks": [
+    "record.retention"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 19(1)",
+     "relation": "evidence_for",
+     "slice": "logs kept for at least six months"
+    },
+    {
+     "framework": "AIA",
+     "clause": "Art 18(1)",
+     "relation": "evidence_for",
+     "slice": "documentation kept 10 years"
+    }
+   ]
+  },
+  {
+   "id": "CC-11.3",
+   "title": "Published self-assessment labelled as such",
+   "text": "The organization may publish its method, raw results and rerun steps. A published assessment made by the organization of its own system shall be labelled a self-assessment and shall not be presented as a certification.",
+   "mark": "H",
+   "metric": "published assessments without the self-assessment label",
+   "threshold": "0",
+   "checks": [
+    "page.label"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 43(2)",
+     "relation": "nearest_clause",
+     "slice": "conformity assessment based on internal control"
+    }
+   ]
+  },
+  {
+   "id": "CC-11.4",
+   "title": "Second rater invited; disagreements published",
+   "text": "A published self-assessment should invite a second rater and should publish any disagreement between raters.",
+   "mark": "H",
+   "metric": "published self-assessments without a rater invitation",
+   "threshold": "0",
+   "checks": [],
+   "maps_to": [
+    {
+     "framework": "DORA",
+     "clause": "Art 24(4)",
+     "relation": "nearest_clause",
+     "slice": "independent parties"
+    }
+   ]
+  },
+  {
+   "id": "CC-12.1",
+   "title": "Each requirement marked mechanical, assisted or manual",
+   "text": "The programme shall mark each requirement as mechanical (a tool decides), assisted (a tool flags, a person decides) or manual (a person decides).",
+   "mark": "H",
+   "metric": "requirements without a mark",
+   "threshold": "0",
+   "checks": [
+    "requirements.marks"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 14(1)",
+     "relation": "evidence_for",
+     "slice": "which decisions a person takes"
+    }
+   ]
+  },
+  {
+   "id": "CC-12.2",
+   "title": "Mechanical requirements in machine-readable form",
+   "text": "Requirements marked mechanical should be expressed in a machine-readable form, kept under version control with the test set.",
+   "mark": "A",
+   "metric": "mechanical requirements without a check id in this file",
+   "threshold": "0",
+   "checks": [
+    "requirements.marks"
+   ],
+   "maps_to": [
+    {
+     "framework": "NIST-CSF",
+     "clause": "PR.PS-01",
+     "relation": "nearest_clause",
+     "slice": "configuration management"
+    }
+   ]
+  },
+  {
+   "id": "CC-12.3",
+   "title": "Output-boundary rule table with false-positive tests",
+   "text": "Where a mechanical requirement applies to every output, the organization should enforce it at the output boundary with a rule table. Each rule in a blocking tier shall have a recorded false-positive test, and rules that fail it shall move to a warning tier.",
+   "mark": "M",
+   "metric": "blocking-tier hits on published pages; blocking rules without a recorded false-positive test",
+   "threshold": "0; 0",
+   "checks": [
+    "rules.blocking",
+    "rules.tests"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 15(1)",
+     "relation": "evidence_for",
+     "slice": "consistent performance at the output"
+    },
+    {
+     "framework": "NIST-CSF",
+     "clause": "PR.PS-01",
+     "relation": "evidence_for",
+     "slice": "configuration management of the rule table"
+    }
+   ]
+  },
+  {
+   "id": "CC-12.4",
+   "title": "Rule hits logged and reviewed",
+   "text": "Each rule hit at the output boundary shall be logged with the rule identifier, the time and the session or request. The log shall be reviewed at each programme review to retire, tighten or promote rules.",
+   "mark": "M",
+   "metric": "rule hits without id, time and run; runs without a hit summary",
+   "threshold": "0; 0",
+   "checks": [
+    "rules.warning"
+   ],
+   "maps_to": [
+    {
+     "framework": "AIA",
+     "clause": "Art 12(1)",
+     "relation": "evidence_for",
+     "slice": "logging"
+    },
+    {
+     "framework": "NIST-CSF",
+     "clause": "DE.CM-09",
+     "relation": "evidence_for",
+     "slice": "monitoring"
+    }
+   ]
+  },
+  {
+   "id": "CC-12.5",
+   "title": "Records exportable in an open format",
+   "text": "Run records and nonconformities should be exportable in an open, published format for assessment results and findings.",
+   "mark": "M",
+   "metric": "run records not exported in the open format; schema validation",
+   "threshold": "0; validated",
+   "checks": [
+    "record.format"
+   ],
+   "maps_to": [
+    {
+     "framework": "NIST-CSF",
+     "clause": "GV.OC",
+     "relation": "nearest_clause",
+     "slice": "organizational context"
+    }
+   ]
+  }
+ ],
+ "version_note": "Draft 0.2 (35 requirements) was the object of self-assessment run 1 on 2026-10-03. Draft 0.3 (2026-10-07) adds CC-6.6; its run 1 result is an addendum scored on 2026-10-07 outside the hashed prediction."
+}

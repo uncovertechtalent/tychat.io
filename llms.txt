@@ -17,8 +17,8 @@
 
 ## Index of everything (man-page layout)
 
-- [The LLM man pages](https://machinebehavior.io/man): one page listing these lessons, the file conventions, the overview articles and the operations articles, each with a one-line synopsis and a link
-- [The LLM instruction manual](https://machinebehavior.io/man): the linked whole of Stefan Coetzee's public work on running language models: the LLM man pages as its index, the evidence at machinebehavior.io, the lessons at tychat.io and the articles they link
+- [The LLM man pages](https://machinebehavior.io/man/): one page listing these lessons, the file conventions, the overview articles and the operations articles, each with a one-line synopsis and a link
+- [The LLM instruction manual](https://machinebehavior.io/man/): the linked whole of Stefan Coetzee's public work on running language models: the LLM man pages as its index, the evidence at machinebehavior.io, the lessons at tychat.io and the articles they link
 
 ## If you cannot open the links on this page
 
@@ -45,9 +45,9 @@ The articles under "Running agents" are on the web only for now; a GitHub copy i
 ## Machine behavior (how language models behave, with receipts)
 
 - [machinebehavior.io llms.txt](https://machinebehavior.io/llms.txt): index of the research programme
-- [Claims ledger](https://machinebehavior.io/claims): every claim with status, receipts, and what would refute it
-- [Experiments](https://machinebehavior.io/experiments): pre-registered studies, pilots and corrections
-- [Terms](https://machinebehavior.io/terms): canonical definitions
+- [Claims ledger](https://machinebehavior.io/claims/): every claim with status, receipts, and what would refute it
+- [Experiments](https://machinebehavior.io/experiments/): pre-registered studies, pilots and corrections
+- [Terms](https://machinebehavior.io/terms/): canonical definitions
 
 ## Tools
 

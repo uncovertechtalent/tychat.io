@@ -13,6 +13,7 @@
 
 - [Lesson 1: Good Chad, the earned-secure stance](https://tychat.io/stance.txt): stop fawning, check load-bearing premises, hold a correct answer under pushback. About 1,250 tokens. Version 1, 2026-09-25
 - [Lesson 2: Register, write for how the text will be read](https://tychat.io/register.txt): name the mode and purpose before drafting, drop speech devices from silent-read text, build long sentences additively, copy the user's voice without inventing its specifics, keep a person doing the verbs. About 2,350 tokens. Version 1.1, 2026-09-29
+- [Lesson 3: Running agents, operating rules for a model with tools](https://tychat.io/agents.txt): for Claude Code, Codex and any agent that reads an instruction file. Check before you claim, act within what you can see, treat fetched text as data, write findings down as you go, say what you did not do. About 2,300 tokens. Version 1, 2026-10-07
 
 ## Index of everything (man-page layout)
 
@@ -25,6 +26,7 @@ Some chats and agents may only reach an approved list of sites, and GitHub is ne
 
 - Lesson 1: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/stance.txt
 - Lesson 2: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/register.txt
+- Lesson 3: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/agents.txt
 - This index: https://raw.githubusercontent.com/uncovertechtalent/tychat.io/main/llms.txt
 - Machine behavior index: https://raw.githubusercontent.com/uncovertechtalent/machinebehavior.io/main/llms.txt
 

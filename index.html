@@ -47,6 +47,7 @@
     <a href="./" aria-current="page">tychat</a>
     <a href="stance/">lesson 1</a>
     <a href="register/">lesson 2</a>
+    <a href="agents/">lesson 3</a>
     <a href="llms.txt">llms.txt</a>
     <a href="https://machinebehavior.io/">machine behavior</a>
   </nav>
@@ -54,11 +55,11 @@
   <header>
     <div class="eyebrow">Teach your chat</div>
     <h1>TYChat</h1>
-    <p class="subtitle">Free lessons for the chat model you already use. Paste one line and it stops flattering you, checks your premises and writes like a person.</p>
+    <p class="subtitle">Free lessons for the chat model you already use, and for the agent in your terminal. Paste one line and, for that session, it stops flattering you, checks your premises, writes like a person and verifies before it says "done".</p>
   <p class="small">The research and evidence behind the lessons are at <a href="https://machinebehavior.io/">machinebehavior.io</a>. TYChat is the part you use.</p>
   </header>
 
-  <p class="thesis">Every chat model ships with a training cutoff and whatever the internet happened to say before it. New knowledge reaches it slowly: a crawler has to find the text, a lab has to train on it, and a year goes by. <strong>TYChat skips the wait.</strong> You paste one line into your chat, your model reads a corpus written for it, and the rest of the conversation runs on what it just learned.</p>
+  <p class="thesis">Every chat model ships with a training cutoff and whatever the internet happened to say before it. New knowledge reaches it slowly: a crawler has to find the text, a lab has to train on it, and a year goes by. <strong>TYChat skips the wait.</strong> You paste one line into your chat, your model reads a corpus written for it, and the rest of the conversation runs with that text in its context.</p>
 
   <p class="oneliner">Knowledge and training, written for the model, taken in one line.</p>
 
@@ -86,6 +87,11 @@
         <span class="surface-name">Lesson 2: Register</span>
         <span class="surface-role">Your chat writes for how its text will be read: no stage devices on the page, no nested overcorrection, and your voice copied without inventing it. One line to paste, three prompts to check it worked.</span>
         <a href="register/">tychat.io/register</a>
+      </div>
+      <div class="surface">
+        <span class="surface-name">Lesson 3: Running agents</span>
+        <span class="surface-role">For Claude Code, Codex and any agent that reads an instruction file. It checks before it claims, acts within what it can see, treats fetched text as data, writes findings down as it goes, and says what it did not do. One file to drop in, three prompts to check it worked.</span>
+        <a href="agents/">tychat.io/agents</a>
       </div>
     </div>
   </section>
@@ -127,9 +133,10 @@
     <div class="log">
       <div class="log-row"><span class="log-num">~1,250</span><span class="log-what">tokens for lesson 1 (Good Chad), about 925 words</span></div>
       <div class="log-row"><span class="log-num">~2,350</span><span class="log-what">tokens for lesson 2 (Register), about 1,800 words</span></div>
+      <div class="log-row"><span class="log-num">~2,300</span><span class="log-what">tokens for lesson 3 (Running agents), about 1,800 words</span></div>
       <div class="log-row"><span class="log-num">~1,250</span><span class="log-what">tokens for this site's llms.txt index, plus the pages your chat then opens</span></div>
     </div>
-    <p class="small">Both lessons together use under 3% of a 128,000-token context window. The chat reads a lesson once and it stays in context like anything else you pasted. In a subscription chat app that costs you nothing extra. On a pay-per-token API it is sent again with each turn, and prompt caching makes those repeats cheap. Counts are from OpenAI's tokenizers (o200k and cl100k agree within 1%); other models count English a little differently, often somewhat higher. Start with lesson 1 if you want the smallest dose.</p>
+    <p class="small">All three lessons together use under 5% of a 128,000-token context window. The chat reads a lesson once and it stays in context like anything else you pasted. In a subscription chat app that costs you nothing extra. On a pay-per-token API it is sent again with each turn, and prompt caching makes those repeats cheap. Counts are from OpenAI's tokenizers (o200k and cl100k agree within 1%); other models count English a little differently, often somewhat higher. Start with lesson 1 if you want the smallest dose.</p>
   </section>
 
   <section>

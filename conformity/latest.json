@@ -1,0 +1,199 @@
+{
+ "history": [
+  {
+   "ts": "2026-10-07T18:03:56Z",
+   "trigger": "push",
+   "sha": "4e31d3b9c0ed385a76acf77551b2dd08de809489",
+   "overall": "pass",
+   "findings_open": 0,
+   "warnings": 0
+  }
+ ],
+ "findings": [],
+ "last_run": "2026-10-07T18:03:56Z",
+ "overall": "pass",
+ "requirement_states": {
+  "CC-4.1": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-4.2": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-4.3": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-5.1": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-5.2": {
+   "live": "pass",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-5.3": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-6.1": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-6.2": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-6.3": {
+   "live": "pass",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-6.4": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-6.5": {
+   "live": "pass",
+   "self": null,
+   "mark": "A"
+  },
+  "CC-6.6": {
+   "live": "partial",
+   "self": null,
+   "mark": "A"
+  },
+  "CC-7.1": {
+   "live": "partial",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-7.2": {
+   "live": "pass",
+   "self": null,
+   "mark": "H"
+  },
+  "CC-7.3": {
+   "live": "partial",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-7.4": {
+   "live": "pass",
+   "self": null,
+   "mark": "A"
+  },
+  "CC-7.5": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-8.1": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-8.2": {
+   "live": "partial",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-8.3": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-8.4": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-8.5": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-8.6": {
+   "live": null,
+   "self": null,
+   "mark": "A"
+  },
+  "CC-9.1": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-9.2": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-10.1": {
+   "live": "pass",
+   "self": null,
+   "mark": "A"
+  },
+  "CC-10.2": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-11.1": {
+   "live": "pass",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-11.2": {
+   "live": "partial",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-11.3": {
+   "live": "pass",
+   "self": null,
+   "mark": "H"
+  },
+  "CC-11.4": {
+   "live": null,
+   "self": null,
+   "mark": "H"
+  },
+  "CC-12.1": {
+   "live": "pass",
+   "self": null,
+   "mark": "H"
+  },
+  "CC-12.2": {
+   "live": "pass",
+   "self": null,
+   "mark": "A"
+  },
+  "CC-12.3": {
+   "live": "pass",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-12.4": {
+   "live": "pass",
+   "self": null,
+   "mark": "M"
+  },
+  "CC-12.5": {
+   "live": "partial",
+   "self": null,
+   "mark": "M"
+  }
+ },
+ "site_commit": "4e31d3b9c0ed385a76acf77551b2dd08de809489",
+ "site": "tychat.io"
+}

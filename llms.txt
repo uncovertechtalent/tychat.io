@@ -57,3 +57,7 @@ The articles under "Running agents" are on the web only for now; a GitHub copy i
 ## Author
 
 Stefan Coetzee: 18 years running Big Iron UNIX at airlines, a national grid and a national telco; 8 years as an SRE and people manager at internet scale; since 2025 building knowledge graphs for agents. https://machinebehavior.io/ · https://coetzeestefan.substack.com/ · https://github.com/uncovertechtalent
+
+## Conformity
+
+- [Conformity](https://tychat.io/conformity/): continuous conformity of this site, site tier. The mechanical requirements of the working draft (rule table at the output boundary, placeholder gate, sitemap and canonical checks) run on every push before the site deploys and weekly; run records and open findings on the page. Self-assessment, not a certification. Same gate as https://machinebehavior.io/conformity/

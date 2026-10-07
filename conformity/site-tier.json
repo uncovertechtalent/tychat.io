@@ -5,9 +5,9 @@
  "repo_url": "https://github.com/uncovertechtalent/tychat.io",
  "action_repo_url": "https://github.com/uncovertechtalent/machinebehavior.io",
  "rerun_command": "python3 ../machinebehavior.io/.github/actions/conformity/run.py --root . --config conformity/site-tier.json --requirements conformity/requirements.json --out conformity --dry-run",
- "deploy_gated": false,
- "deploy_gated_since": null,
- "deploy_gated_note": "not yet gated: Pages deploys from the branch; the switch to workflow deploy follows a green dry run",
+ "deploy_gated": true,
+ "deploy_gated_since": "2026-10-07",
+ "deploy_gated_note": "GitHub Pages source set to GitHub Actions on 2026-10-07; the deploy job runs only after the conformity job passes (conformity.yml, action from machinebehavior.io).",
  "schedule": {
   "cron": "27 6 * * 1",
   "interval_days": 7,

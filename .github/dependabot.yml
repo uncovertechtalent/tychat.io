@@ -1,0 +1,17 @@
+# Dependabot keeps the commit-SHA pins on GitHub Actions current: it moves the SHA and the
+# version comment together. "/" covers .github/workflows. One group, so at most one pull
+# request a month.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    ignore:
+      # The shared conformity gate moves only when its owner bumps the SHA on purpose.
+      # Bump step: conformity/README.md in uncovertechtalent/machinebehavior.io.
+      - dependency-name: "uncovertechtalent/machinebehavior.io*"

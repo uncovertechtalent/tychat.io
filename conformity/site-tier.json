@@ -24,7 +24,8 @@
   "praise-opener": "warn",
   "service-closer": "block",
   "filler-idiom": "block",
-  "hook-opener": "block"
+  "hook-opener": "block",
+  "actions-pinned": "block"
  },
  "false_positive_tests": [
   {
@@ -63,6 +64,16 @@
    "hits": 0,
    "legitimate": 0,
    "decision": "block"
+  },
+  {
+   "rule": "actions-pinned",
+   "date": "2026-10-11",
+   "corpus": "every uses: line in .github/workflows and .github/actions of 7 repositories: machinebehavior.io, its portal worktree, tychat.io, uncovertechtalent.com and its local worktree, the CTO powersuit, and one third-party clone; 39 external references",
+   "exemptions": "local actions (./ and ../), comment lines",
+   "hits": 36,
+   "legitimate": 0,
+   "examples": "each hit named a tag (actions/checkout@v4) or a branch (conformity@main); the 3 references that passed named full commit SHAs",
+   "decision": "block, once the three sites had 0 hits (2026-10-11)"
   }
  ],
  "false_positive_tests_note": "Recorded on machinebehavior.io over the site pages and the author's prose corpus (2026-10-07); the tychat.io pages were added to the corpus on the first dry run (this file's deploy_gated_since date).",

@@ -22,7 +22,7 @@ Not scanned, on purpose: `stance.txt`, `register.txt`, `agents.txt`. The lessons
 
 Relative links are allowed on this site (`require_root_absolute_links` is false in the config).
 
-Every `uses:` reference is pinned to a full 40-character commit SHA with its release in a comment. Never add a tag or branch ref: the gate check `actions.pinned` blocks the deploy on one. Dependabot (`.github/dependabot.yml`) proposes new pins monthly and leaves the conformity action alone.
+Every `uses:` reference is pinned to a full 40-character commit SHA with its release in a comment. Never add a tag or branch ref: the gate check `actions.pinned` blocks the deploy on one. Every outside action also needs its owner on `actions_owners_allow` in `conformity/site-tier.json` (check `actions.owners`); a new owner gets its own reviewed pull request. Dependabot (`.github/dependabot.yml`) proposes new pins monthly and leaves the conformity action alone.
 
 Check locally before pushing (Python 3 and Node, no network; needs a checkout of machinebehavior.io next to this repo, at the commit the workflow pins):
 

@@ -12,7 +12,7 @@ A bot commits `conformity/latest.json` and `conformity/index.html` after every r
 
 ## The deploy gate
 
-Every push to `main` runs the conformity checks first (composite action from `uncovertechtalent/machinebehavior.io/.github/actions/conformity`). The Pages deploy job depends on that job: a failing check blocks the deploy and the previous build stays live. Findings are listed at https://tychat.io/conformity/ and in `conformity/latest.json`.
+Every push to `main` runs the conformity checks first (composite action from `uncovertechtalent/machinebehavior.io/.github/actions/conformity`, pinned to a commit of its main in `.github/workflows/conformity.yml`; the gate owner bumps that SHA on purpose, with the step in `conformity/README.md` of machinebehavior.io). The Pages deploy job depends on that job: a failing check blocks the deploy and the previous build stays live. Findings are listed at https://tychat.io/conformity/ and in `conformity/latest.json`.
 
 Blocking (deploy stops): rule hits in the blocking tier (`service-closer`, `filler-idiom`, `hook-opener`; see `conformity/site-tier.json`) on any HTML page or on `llms.txt`; placeholder text on a page (`TODO`, `TBD`, `[Voice pass ...]` and the like); a page missing from `sitemap.xml`; a page without `<link rel="canonical">`.
 
@@ -22,7 +22,9 @@ Not scanned, on purpose: `stance.txt`, `register.txt`, `agents.txt`. The lessons
 
 Relative links are allowed on this site (`require_root_absolute_links` is false in the config).
 
-Check locally before pushing (Python 3 and Node, no network; needs a checkout of machinebehavior.io next to this repo):
+Every `uses:` reference is pinned to a full 40-character commit SHA with its release in a comment. Never add a tag or branch ref. Dependabot (`.github/dependabot.yml`) proposes new pins monthly and leaves the conformity action alone.
+
+Check locally before pushing (Python 3 and Node, no network; needs a checkout of machinebehavior.io next to this repo, at the commit the workflow pins):
 
 ```bash
 python3 ../machinebehavior.io/.github/actions/conformity/run.py --root . --config conformity/site-tier.json --requirements conformity/requirements.json --out conformity --dry-run

@@ -25,7 +25,8 @@
   "service-closer": "block",
   "filler-idiom": "block",
   "hook-opener": "block",
-  "actions-pinned": "block"
+  "actions-pinned": "block",
+  "actions-owners": "block"
  },
  "false_positive_tests": [
   {
@@ -74,6 +75,16 @@
    "legitimate": 0,
    "examples": "each hit named a tag (actions/checkout@v4) or a branch (conformity@main); the 3 references that passed named full commit SHAs",
    "decision": "block, once the three sites had 0 hits (2026-10-11)"
+  },
+  {
+   "rule": "actions-owners",
+   "date": "2026-10-11",
+   "corpus": "every uses: line in .github/workflows and .github/actions of the same 7 repositories as the actions-pinned test (current main for the three sites); 39 external references from 3 owners: actions, peaceiris, uncovertechtalent",
+   "exemptions": "local actions (./ and ../), comment lines",
+   "hits": 0,
+   "legitimate": 0,
+   "examples": "each site lists only the owners its own workflows use; the per-site run gives 0 hits on all three sites",
+   "decision": "block"
   }
  ],
  "false_positive_tests_note": "Recorded on machinebehavior.io over the site pages and the author's prose corpus (2026-10-07); the tychat.io pages were added to the corpus on the first dry run (this file's deploy_gated_since date).",
@@ -121,5 +132,9 @@
   "footer_sig": "Stefan Coetzee, 2026",
   "footer_motto": "The receipts are the argument.",
   "stylesheet": "/style.css"
- }
+ },
+ "actions_owners_allow": [
+  "actions",
+  "uncovertechtalent"
+ ]
 }

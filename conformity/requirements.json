@@ -120,7 +120,8 @@
    "metric": "run records without a version for every listed component",
    "threshold": "0",
    "checks": [
-    "components"
+    "components",
+    "actions.pinned"
    ],
    "maps_to": [
     {

@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run the checks
-        uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@d5a242f0e5db2a5baba1d48a84a056ac55e3cae2 # machinebehavior.io conformity, main at 2026-10-11
+        uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@c4874bcf96e5f104a4b9645b1b74f88ce0f2e3bf # machinebehavior.io conformity, main at 2026-10-11
         with:
           root: .
           config: conformity/site-tier.json

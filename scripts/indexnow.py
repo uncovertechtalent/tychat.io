@@ -19,6 +19,9 @@ new branch; OUT not written. Exit 2: an error (no key file or more than one, an 
 The key is public by design: a search engine fetches /<key>.txt from the site root to check that a submission comes
 from the site's owner. The key is the name of the one file at the site root whose name is 32 hex characters plus .txt
 and whose content is that name. Stdlib only. Tests: test_indexnow.py next to this file.
+
+One script for the sites of the same owner: tychat.io uses git mode, uncovertechtalent.com (a Hugo build) uses tree
+mode. Keep both modes in every copy, so the copies stay identical.
 """
 import filecmp, json, re, subprocess, sys
 from pathlib import Path

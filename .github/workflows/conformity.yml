@@ -117,7 +117,7 @@ jobs:
         run: python3 scripts/test_indexnow.py
 
       - name: Find the start of the range
-        # The newest github-pages deployment with a success status, other than this run's (deployments carry the
+        # The newest github-pages deployment with a success status, other than this run's own (deployments carry the
         # run's GITHUB_SHA). Without one, a push falls back to the commit before the push.
         id: range
         env:
@@ -125,9 +125,13 @@ jobs:
           BEFORE: ${{ github.event.before }}
         run: |
           start=""
+          own_skipped=""
           if deployments=$(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=30" --jq '.[] | "\(.id) \(.sha)"' 2>"$RUNNER_TEMP/gh.err"); then
             while read -r id sha; do
-              if [ -z "$id" ] || [ "$sha" = "$GITHUB_SHA" ]; then continue; fi
+              if [ -z "$id" ]; then continue; fi
+              # Skip this run's own deployment, the newest of its commit (the concurrency group runs one deploy at a
+              # time). An earlier deployment of the same commit, from a scheduled or manual run, counts as the start.
+              if [ "$sha" = "$GITHUB_SHA" ] && [ -z "$own_skipped" ]; then own_skipped=1; continue; fi
               if ok=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=30" --jq 'any(.[]; .state == "success")' 2>"$RUNNER_TEMP/gh.err"); then
                 if [ "$ok" = true ]; then
                   start="$sha"

@@ -97,7 +97,7 @@ jobs:
     # this run, plus the sitemap, go to the IndexNow endpoint, which shares them with Bing and the other engines that
     # take part. Starting from that deployment covers pushes whose own run failed or was cancelled. The job never fails
     # the run: the deploy is already live, and a refused submission only waits for the next crawl.
-    needs: deploy
+    needs: [deploy, script-tests]   # the URL selection is tested before it is used
     runs-on: ubuntu-latest
     continue-on-error: true
     timeout-minutes: 5
@@ -121,17 +121,25 @@ jobs:
           BEFORE: ${{ github.event.before }}
         run: |
           start=""
-          while read -r id sha; do
-            if [ -z "$id" ] || [ "$sha" = "$GITHUB_SHA" ]; then continue; fi
-            if gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=30" --jq 'any(.[]; .state == "success")' 2>/dev/null | grep -qx true; then
-              start="$sha"
-              echo "range start: $sha, the last successful deployment before this run"
-              break
-            fi
-          done < <(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=30" --jq '.[] | "\(.id) \(.sha)"' 2>/dev/null || true)
+          if deployments=$(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=30" --jq '.[] | "\(.id) \(.sha)"' 2>"$RUNNER_TEMP/gh.err"); then
+            while read -r id sha; do
+              if [ -z "$id" ] || [ "$sha" = "$GITHUB_SHA" ]; then continue; fi
+              if ok=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=30" --jq 'any(.[]; .state == "success")' 2>"$RUNNER_TEMP/gh.err"); then
+                if [ "$ok" = true ]; then
+                  start="$sha"
+                  echo "range start: $sha, the last successful deployment before this run"
+                  break
+                fi
+              else
+                echo "::warning::IndexNow: status lookup of deployment $id failed: $(tr -d '\n' < "$RUNNER_TEMP/gh.err" | head -c 300)"
+              fi
+            done <<< "$deployments"
+          else
+            echo "::warning::IndexNow: deployments lookup failed: $(tr -d '\n' < "$RUNNER_TEMP/gh.err" | head -c 300)"
+          fi
           if [ -z "$start" ] && [ -n "${BEFORE:-}" ]; then
             start="$BEFORE"
-            echo "range start: $start, the commit before the push (no earlier successful deployment found)"
+            echo "range start: $start, the commit before the push (no successful deployment from the API)"
           fi
           echo "start=$start" >> "$GITHUB_OUTPUT"
 

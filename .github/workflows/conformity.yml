@@ -97,7 +97,7 @@ jobs:
     # this run, plus the sitemap, go to the IndexNow endpoint, which shares them with Bing and the other engines that
     # take part. Starting from that deployment covers pushes whose own run failed or was cancelled. The job never fails
     # the run: the deploy is already live, and a refused submission only waits for the next crawl.
-    needs: [deploy, script-tests]   # the URL selection is tested before it is used
+    needs: deploy
     runs-on: ubuntu-latest
     continue-on-error: true
     timeout-minutes: 5
@@ -111,6 +111,10 @@ jobs:
           ref: ${{ needs.deploy.outputs.sha }}
           fetch-depth: 0
           persist-credentials: false
+
+      - name: Test the URL selection
+        # On the checkout this job uses: a failing test stops the job before anything is submitted.
+        run: python3 scripts/test_indexnow.py
 
       - name: Find the start of the range
         # The newest github-pages deployment with a success status, other than this run's (deployments carry the

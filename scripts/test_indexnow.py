@@ -108,6 +108,9 @@ def main():
         case('tree: no previous build: every URL in the sitemap', run(out, 'tree', str(tmp / 'none'), str(new))[1],
              [f'{BASE}/', f'{BASE}/a/', f'{BASE}/a/b/', f'{BASE}/c/', f'{BASE}/lesson.txt', f'{BASE}/llms.txt', f'{BASE}/sitemap.xml'])
         case('tree: missing build: exit 2', run(out, 'tree', str(old), str(tmp / 'none'))[0], 2)
+        indexnow.MAX_URLS, limit = 2, indexnow.MAX_URLS
+        case('tree: over the limit, the sitemap URL stays', t()[1], [f'{BASE}/a/b/', f'{BASE}/sitemap.xml'])
+        indexnow.MAX_URLS = limit
 
     for f in failures:
         print(f, file=sys.stderr)

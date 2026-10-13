@@ -98,10 +98,10 @@ def main(argv):
     if not urls and 'sitemap.xml' not in changed:
         print(f'indexnow: {len(changed)} changed files, none of them a URL in the sitemap or llms.txt; nothing to submit')
         return 3
+    if len(urls) >= MAX_URLS:  # keep room for the sitemap URL
+        print(f'indexnow: {len(urls) + 1} URLs, over the limit of {MAX_URLS} per request; the first {MAX_URLS - 1} and the sitemap are sent')
+        urls = urls[:MAX_URLS - 1]
     urls.append(base + '/sitemap.xml')
-    if len(urls) > MAX_URLS:
-        print(f'indexnow: {len(urls)} URLs, over the limit of {MAX_URLS} per request; the first {MAX_URLS} are sent')
-        urls = urls[:MAX_URLS]
     k = key(site)
     body = {'host': host, 'key': k, 'keyLocation': f'{base}/{k}.txt', 'urlList': urls}
     Path(out).write_text(json.dumps(body, indent=1) + '\n')

@@ -28,6 +28,8 @@ concurrency:
 
 jobs:
   conformity:
+    # This name is the required status check in the ruleset on main: renaming the job blocks every merge until the
+    # ruleset names the new check.
     name: Conformity checks
     runs-on: ubuntu-latest
     permissions:
@@ -90,6 +92,7 @@ jobs:
     needs: conformity
     if: ${{ !cancelled() && needs.conformity.outputs.record == 'success' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10   # a hung push would otherwise hold the main concurrency group for hours
     environment:
       name: main-push
       deployment: false   # a secret store, not a deploy target: no deployment record (IndexNow reads github-pages only)

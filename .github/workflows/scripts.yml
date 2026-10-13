@@ -1,0 +1,35 @@
+name: Script tests
+
+# Tests for the scripts the deploy workflow runs: scripts/test_indexnow.py checks which URLs the IndexNow job
+# submits after a deploy. Runs on pull requests and pushes to main that change the scripts, so a broken URL selection
+# shows before the merge. The IndexNow job runs the same tests again on its own checkout before it submits.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/scripts.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/scripts.yml"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  test:
+    name: Script tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read    # check out the repository
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: IndexNow URL selection
+        run: python3 scripts/test_indexnow.py

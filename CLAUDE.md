@@ -30,6 +30,10 @@ Check locally before pushing (Python 3 and Node, no network; needs a checkout of
 python3 ../machinebehavior.io/.github/actions/conformity/run.py --root . --config conformity/site-tier.json --requirements conformity/requirements.json --out conformity --dry-run
 ```
 
+## After the deploy: IndexNow
+
+After each successful deploy, the job `Submit changed URLs to IndexNow` in `.github/workflows/conformity.yml` sends the changed URLs to `https://api.indexnow.org/indexnow`, which shares them with Bing and the other engines that take part. The range starts at the last successful `github-pages` deployment before the run (`deployments: read`), so a push whose own run failed is covered by the next deploy. `scripts/indexnow.py git` maps each changed file to its URL and keeps the ones listed in `sitemap.xml` (pages and the `.txt` lessons) plus `llms.txt`; the sitemap URL goes with every submission, removed files do not. The job logs `IndexNow HTTP <status>` (200 submitted, 202 received with the key check pending) and never fails the run. The key file `066dea709f9a1a3b3103ca2196ecae75.txt` at the root is public by design; keep it there. Tests: `python3 scripts/test_indexnow.py`, also run by the job `Script tests`.
+
 ## Records and ownership
 
 - Run records: workflow artifacts, 90 days. History and open findings: `conformity/latest.json` (git).

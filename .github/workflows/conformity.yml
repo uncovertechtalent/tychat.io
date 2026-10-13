@@ -3,7 +3,8 @@ name: Conformity
 # Continuous conformity, site tier, for tychat.io. The checks come from the
 # composite action in uncovertechtalent/machinebehavior.io. They run on every
 # push to main before the Pages deploy, weekly, and by hand. A failing check
-# blocks the deploy and the previous build stays live.
+# blocks the deploy and the previous build stays live. After each deploy, the
+# changed URLs go to IndexNow.
 
 on:
   push:
@@ -69,11 +70,17 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      sha: ${{ steps.deployed.outputs.sha }}
     steps:
       - name: Checkout (after the bot commit)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
+      - name: Record the deployed commit
+        # The IndexNow job submits the URLs that changed up to this commit.
+        id: deployed
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Upload site
@@ -83,3 +90,93 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  indexnow:
+    name: Submit changed URLs to IndexNow
+    # After each successful deploy: the URLs that changed since the last successful github-pages deployment before
+    # this run, plus the sitemap, go to the IndexNow endpoint, which shares them with Bing and the other engines that
+    # take part. Starting from that deployment covers pushes whose own run failed or was cancelled. The job never fails
+    # the run: the deploy is already live, and a refused submission only waits for the next crawl.
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 5
+    permissions:
+      contents: read      # check out the deployed commit with its history, for the diff
+      deployments: read   # find the last successful github-pages deployment, the start of the range
+    steps:
+      - name: Checkout (the deployed commit)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.deploy.outputs.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Find the start of the range
+        # The newest github-pages deployment with a success status, other than this run's (deployments carry the
+        # run's GITHUB_SHA). Without one, a push falls back to the commit before the push.
+        id: range
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          start=""
+          while read -r id sha; do
+            if [ -z "$id" ] || [ "$sha" = "$GITHUB_SHA" ]; then continue; fi
+            if gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=30" --jq 'any(.[]; .state == "success")' 2>/dev/null | grep -qx true; then
+              start="$sha"
+              echo "range start: $sha, the last successful deployment before this run"
+              break
+            fi
+          done < <(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=30" --jq '.[] | "\(.id) \(.sha)"' 2>/dev/null || true)
+          if [ -z "$start" ] && [ -n "${BEFORE:-}" ]; then
+            start="$BEFORE"
+            echo "range start: $start, the commit before the push (no earlier successful deployment found)"
+          fi
+          echo "start=$start" >> "$GITHUB_OUTPUT"
+
+      - name: Submit to IndexNow
+        # scripts/indexnow.py writes the request body (host, key, keyLocation, urlList). The key is public by design:
+        # engines fetch it from the site root. 200 means submitted, 202 received with the key check pending.
+        env:
+          START: ${{ steps.range.outputs.start }}
+          DEPLOYED: ${{ needs.deploy.outputs.sha }}
+        run: |
+          if [ -z "$START" ]; then
+            echo "::warning::IndexNow: no start for the range; nothing submitted"
+            exit 0
+          fi
+          rc=0
+          python3 scripts/indexnow.py git "$START" "$DEPLOYED" "$RUNNER_TEMP/indexnow.json" || rc=$?
+          if [ "$rc" = 3 ]; then
+            exit 0
+          elif [ "$rc" != 0 ]; then
+            echo "::warning::IndexNow: no URL list (exit $rc); nothing submitted"
+            exit 0
+          fi
+          rm -f "$RUNNER_TEMP/indexnow.out"
+          status=$(curl -sS --max-time 30 --retry 2 -o "$RUNNER_TEMP/indexnow.out" -w '%{http_code}' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data-binary "@$RUNNER_TEMP/indexnow.json" https://api.indexnow.org/indexnow) || true
+          echo "IndexNow HTTP ${status:-000}"
+          case "${status:-000}" in
+            200|202) echo "IndexNow accepted the URLs" ;;
+            *) echo "::warning::IndexNow returned HTTP ${status:-000}; the deploy is live, the URLs were not accepted"
+               head -c 500 "$RUNNER_TEMP/indexnow.out" 2>/dev/null || true ;;
+          esac
+
+  script-tests:
+    name: Script tests
+    # Tests for the scripts this workflow runs: scripts/test_indexnow.py checks which URLs the indexnow job submits.
+    # The deploy does not wait for it.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read    # check out the repository
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: IndexNow URL selection
+        run: python3 scripts/test_indexnow.py

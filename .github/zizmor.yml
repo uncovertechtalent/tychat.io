@@ -1,0 +1,10 @@
+# zizmor configuration: https://docs.zizmor.sh/configuration/
+#
+# Accepted findings. Each one is ignored by an inline `# zizmor: ignore[<rule>]` comment on its own
+# line, so the ignore moves with the line and covers nothing else. This list is the record: rule,
+# place, and reason. Add a line here whenever you add an inline ignore.
+#
+# - artipacked, conformity.yml, the record job's "Checkout main" step: it keeps the deploy key
+#   (ssh-key) because the bot commit of latest.json and the page pushes to main with it. The job
+#   uploads nothing, and the key comes only from the main-push environment (main only).
+rules: {}

@@ -2,21 +2,25 @@ name: Conformity
 
 # Continuous conformity, site tier, for tychat.io. The checks come from the
 # composite action in uncovertechtalent/machinebehavior.io. They run on every
-# push to main before the Pages deploy, weekly, and by hand. A failing check
-# blocks the deploy and the previous build stays live. After each deploy, the
-# changed URLs go to IndexNow.
+# pull request to main (the required check before a merge), on every push to
+# main before the Pages deploy, weekly, and by hand. A failing check blocks the
+# deploy and the previous build stays live. On main, the run record goes back to
+# main as a bot commit pushed with a deploy key that only the main-push
+# environment holds. Pull request runs, manual runs from another branch, and
+# runs without the key commit nothing. After each deploy, the changed URLs go
+# to IndexNow.
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   schedule:
     - cron: "27 6 * * 1"
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+# Each job asks for its own permissions; the workflow grants none.
+permissions: {}
 
 concurrency:
   group: conformity-${{ github.ref }}
@@ -24,14 +28,28 @@ concurrency:
 
 jobs:
   conformity:
+    # This name is the required status check in the ruleset on main: renaming the job blocks every merge until the
+    # ruleset names the new check.
     name: Conformity checks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read    # check out the repository
+    outputs:
+      record: ${{ steps.record.outcome }}
+      base: ${{ steps.base.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: main
+          # A pull request run checks the merge result of the pull request; every other run checks main.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'main' }}
           fetch-depth: 0
+          persist-credentials: false
+
+      - name: Record the checked commit
+        # The record job refuses to commit if main gained a newer run record after this commit.
+        id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Run the checks
         uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@ad371edc1b959ac561a92b17d81f52712aa4b4fb # machinebehavior.io conformity, main at 2026-10-11
@@ -41,18 +59,19 @@ jobs:
           requirements: conformity/requirements.json
           out: conformity
 
-      - name: Commit latest.json and the page
-        run: |
-          git config user.name "conformity-bot"
-          git config user.email "conformity-bot@users.noreply.github.com"
-          git add conformity/latest.json conformity/index.html
-          if git diff --cached --quiet; then
-            echo "no change to commit"
-          else
-            git commit -m "conformity: run $(date -u +%Y-%m-%dT%H:%M:%SZ) (${{ github.event_name }}) [skip ci]"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+      - name: Hand latest.json and the page to the record job
+        # Only on main. Before the gate, so a failed run is recorded too.
+        id: record
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: conformity-page-${{ github.run_id }}
+          path: |
+            conformity/latest.json
+            conformity/index.html
+          if-no-files-found: error
+          retention-days: 1
+          overwrite: true
 
       - name: Gate
         run: |
@@ -63,13 +82,88 @@ jobs:
             exit 1
           fi
 
+  record:
+    name: Commit the run record
+    # The only job that can write to main. The deploy key CONFORMITY_PUSH_KEY is a secret of the main-push
+    # environment, whose deployment branch policy allows main only, so a run from any other ref never receives it.
+    # The branch rules on main let the deploy key through; the workflow token stays read-only. The job runs after a
+    # failed check too (the history keeps failed runs), on main only. Without the key it is a dry run: it shows the
+    # change and pushes nothing.
+    needs: conformity
+    if: ${{ !cancelled() && needs.conformity.outputs.record == 'success' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10   # a hung push would otherwise hold the main concurrency group for hours
+    environment:
+      name: main-push
+      deployment: false   # a secret store, not a deploy target: no deployment record (IndexNow reads github-pages only)
+    permissions:
+      contents: read    # check out main; the push goes over SSH with the deploy key
+    steps:
+      - name: Checkout main  # zizmor: ignore[artipacked] the push below uses the persisted deploy key (.github/zizmor.yml)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+          # Empty without the secret: checkout then reads over HTTPS with the read-only workflow token.
+          ssh-key: ${{ secrets.CONFORMITY_PUSH_KEY }}
+
+      - name: Check that main has no newer run record
+        # A re-run of this job alone reuses this run's artifact, which would overwrite a newer record on main.
+        env:
+          BASE: ${{ needs.conformity.outputs.base }}
+        run: |
+          if [ -z "$BASE" ]; then
+            echo "::error::no checked commit from the conformity job; re-run all jobs"
+            exit 1
+          fi
+          newer=$(git log --format=%H "$BASE..HEAD" -- conformity/latest.json)
+          if [ -n "$newer" ]; then
+            echo "::error::main has a newer run record than this run's ($newer); re-run all jobs, not only this one"
+            exit 1
+          fi
+
+      - name: Fetch latest.json and the page
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: conformity-page-${{ github.run_id }}
+          path: conformity
+
+      - name: Commit and push
+        env:
+          HAS_KEY: ${{ secrets.CONFORMITY_PUSH_KEY != '' }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          git config user.name "conformity-bot"
+          git config user.email "conformity-bot@users.noreply.github.com"
+          git add conformity/latest.json conformity/index.html
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+            exit 0
+          fi
+          git diff --cached --stat
+          if [ "$HAS_KEY" != true ]; then
+            echo "::warning::dry run: CONFORMITY_PUSH_KEY is not set in the main-push environment; the run record was not pushed"
+            exit 0
+          fi
+          # [skip ci] is required: a push with the deploy key starts workflows (a workflow token push does not), so
+          # without it every bot commit would start another run.
+          git commit -m "conformity: run $(date -u +%Y-%m-%dT%H:%M:%SZ) ($EVENT) [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
   deploy:
     name: Deploy to Pages
-    needs: conformity
+    # After the bot commit, so the deployed /conformity/ page is this run's.
+    needs: [conformity, record]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read    # check out main after the bot commit
+      pages: write      # deploy to Pages
+      id-token: write   # the OIDC token deploy-pages needs
     outputs:
       sha: ${{ steps.deployed.outputs.sha }}
     steps:
@@ -77,6 +171,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
+          persist-credentials: false
       - name: Record the deployed commit
         # The IndexNow job submits the URLs that changed up to this commit.
         id: deployed

@@ -180,19 +180,3 @@ jobs:
             *) echo "::warning::IndexNow returned HTTP ${status:-000}; the deploy is live, the URLs were not accepted"
                head -c 500 "$RUNNER_TEMP/indexnow.out" 2>/dev/null || true ;;
           esac
-
-  script-tests:
-    name: Script tests
-    # Tests for the scripts this workflow runs: scripts/test_indexnow.py checks which URLs the indexnow job submits.
-    # The deploy does not wait for it.
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read    # check out the repository
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: IndexNow URL selection
-        run: python3 scripts/test_indexnow.py

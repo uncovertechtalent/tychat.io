@@ -34,6 +34,7 @@ jobs:
       contents: read    # check out the repository
     outputs:
       record: ${{ steps.record.outcome }}
+      base: ${{ steps.base.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -42,6 +43,11 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.ref || 'main' }}
           fetch-depth: 0
           persist-credentials: false
+
+      - name: Record the checked commit
+        # The record job refuses to commit if main gained a newer run record after this commit.
+        id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Run the checks
         uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@ad371edc1b959ac561a92b17d81f52712aa4b4fb # machinebehavior.io conformity, main at 2026-10-11
@@ -97,6 +103,21 @@ jobs:
           fetch-depth: 0
           # Empty without the secret: checkout then reads over HTTPS with the read-only workflow token.
           ssh-key: ${{ secrets.CONFORMITY_PUSH_KEY }}
+
+      - name: Check that main has no newer run record
+        # A re-run of this job alone reuses this run's artifact, which would overwrite a newer record on main.
+        env:
+          BASE: ${{ needs.conformity.outputs.base }}
+        run: |
+          if [ -z "$BASE" ]; then
+            echo "::error::no checked commit from the conformity job; re-run all jobs"
+            exit 1
+          fi
+          newer=$(git log --format=%H "$BASE..HEAD" -- conformity/latest.json)
+          if [ -n "$newer" ]; then
+            echo "::error::main has a newer run record than this run's ($newer); re-run all jobs, not only this one"
+            exit 1
+          fi
 
       - name: Fetch latest.json and the page
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2

@@ -6,10 +6,10 @@ Static site on GitHub Pages, deployed by `.github/workflows/conformity.yml`. Sev
 
 1. Branch from the current main: `git fetch origin && git switch -c <branch> origin/main`.
 2. Run the gate dry run (below) until it prints `overall=pass`.
-3. Push the branch and open the pull request. Merges are squash-only, so the title becomes the commit title.
+3. Push the branch and open the pull request. Merges are squash-only, so the title becomes the commit title. Never write the literal `[skip ci]` into a commit message, a pull request title, or the squash message: GitHub skips the run when the head commit message contains it anywhere, so the required check never reports and a merge starts no deploy. Only the bot commit carries it.
 4. Wait for the `Conformity checks` job to pass on the pull request. It is the required check.
 5. Run the local reviewer before you report the pull request ready: `~/.config/powersuit/review-pr.sh uncovertechtalent/tychat.io <n>`. Read the saved comment and put the findings in your report; post it only on Stefan Coetzee's explicit go.
-6. A merge needs one approval of the latest push, from an account other than the one that pushed it. Agent sessions push as the machine account; Stefan Coetzee approves and merges.
+6. A merge needs one approval of the latest push, from an account other than the one that pushed it. Agent sessions push as the repository owner account, `uncovertechtalent`; Stefan Coetzee approves and merges from his personal account.
 
 Never push to `main`. One automated writer does: conformity-bot (below). So `main` moves without you; the merge does not need an up-to-date branch, so rebase on `origin/main` only when GitHub reports a conflict.
 

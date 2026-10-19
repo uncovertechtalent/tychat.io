@@ -54,6 +54,11 @@ The articles under "Running agents" are on the web only for now; a GitHub copy i
 - [vestige-kit](https://github.com/uncovertechtalent/vestige-kit): a mechanical gate at the output boundary, with a calibration procedure
 - [vault-kit](https://github.com/uncovertechtalent/vault-kit): a markdown knowledge graph for agents to work from
 
+## Legal
+
+- [Impressum](https://tychat.io/impressum/): provider and person responsible for the content, Stefan Coetzee
+- [Privacy notice](https://tychat.io/privacy/): what the host processes when you open a page, the recipients, how long data is kept, and your rights
+
 ## Author
 
 Stefan Coetzee: 18 years running Big Iron UNIX at airlines, a national grid and a national telco; 8 years as an SRE and people manager at internet scale; since 2025 building knowledge graphs for agents. https://machinebehavior.io/ · https://coetzeestefan.substack.com/ · https://github.com/uncovertechtalent

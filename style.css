@@ -131,3 +131,7 @@ dd .receipt { font-size: 0.85rem; color: var(--ink-soft); }
 .small { font-size: 0.9rem; color: var(--ink-soft); }
 .small a, .thesis a:not(.mono) { color: var(--teal); }
 code { font-family: var(--mono); font-size: 0.85em; }
+.legal { font-family: var(--mono); font-size: 0.8rem; display: flex; gap: 1rem; }
+.legal a { color: var(--ink-soft); }
+.legal a:hover, .legal a:focus-visible { color: var(--teal); outline: none; }
+.legal-page p a, .legal-page li a, .legal-page td a, .legal-page dd a { color: var(--teal); }

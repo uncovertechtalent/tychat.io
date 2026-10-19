@@ -127,6 +127,14 @@
    [
     "llms.txt",
     "/llms.txt"
+   ],
+   [
+    "impressum",
+    "/impressum/"
+   ],
+   [
+    "privacy",
+    "/privacy/"
    ]
   ],
   "footer_sig": "Stefan Coetzee, 2026",

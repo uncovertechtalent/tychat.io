@@ -111,10 +111,18 @@
    "overall": "pass",
    "findings_open": 0,
    "warnings": 0
+  },
+  {
+   "ts": "2026-10-19T13:38:32Z",
+   "trigger": "schedule",
+   "sha": "2efcaf485bf68c9f013a72791466d17ae0a152ad",
+   "overall": "pass",
+   "findings_open": 0,
+   "warnings": 0
   }
  ],
  "findings": [],
- "last_run": "2026-10-19T11:00:15Z",
+ "last_run": "2026-10-19T13:38:32Z",
  "overall": "pass",
  "requirement_states": {
   "CC-4.1": {
@@ -298,6 +306,6 @@
    "mark": "M"
   }
  },
- "site_commit": "306e0a5ead6a52d2cc93d5c2a5c4b8fe61f92228",
+ "site_commit": "2efcaf485bf68c9f013a72791466d17ae0a152ad",
  "site": "tychat.io"
 }

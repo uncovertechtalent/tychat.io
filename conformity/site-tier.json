@@ -144,5 +144,45 @@
  "actions_owners_allow": [
   "actions",
   "uncovertechtalent"
- ]
+ ],
+ "compliance": {
+  "source": "machinebehavior.io gate action, compliance/ (vendored unchanged from github.com/uncovertechtalent/cto-powersuit plugins/compliance/checks/ at c8e0cd9bae546f7f070b0bdf32d0d6f5cd6224bb); active once the pin in .github/workflows/conformity.yml names a machinebehavior.io commit that has it",
+  "sha256": {
+   "security_txt.py": "706137d1393f702fe7b2d9044556551ad0908bd7ef49c6798c20bdab4801aea3",
+   "no_third_party.py": "c4185783036c64e6f8fced013e7901dce65db8be322ef7356345c2378cbc34b7"
+  },
+  "decided": "Stefan, 2026-10-21: both rules on warn, with the false-positive records",
+  "compliance.security-txt": {
+   "tier": "warn",
+   "options": {
+    "roots": [
+     "."
+    ]
+   },
+   "false_positive_test": {
+    "date": "2026-10-21",
+    "corpus": "the site root of origin/main 72a6f06 and the live /.well-known/security.txt",
+    "hits": 1,
+    "legitimate": 1,
+    "decision": "real gap (live 404); this change adds the file, warn tier"
+   }
+  },
+  "compliance.no-third-party": {
+   "tier": "warn",
+   "options": {
+    "roots": [
+     "."
+    ],
+    "allowed_hosts": []
+   },
+   "false_positive_test": {
+    "date": "2026-10-21",
+    "corpus": "7 HTML files of origin/main 72a6f06 and the 7 live HTML pages of sitemap.xml; machinebehavior.io (491 and 490) in the same test",
+    "hits": 0,
+    "legitimate": 0,
+    "examples": "every absolute URL on a resource tag was <link rel=canonical>, which loads nothing",
+    "decision": "warn; ready for block"
+   }
+  }
+ }
 }

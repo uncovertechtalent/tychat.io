@@ -52,7 +52,7 @@ jobs:
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Run the checks
-        uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@ad371edc1b959ac561a92b17d81f52712aa4b4fb # machinebehavior.io conformity, main at 2026-10-11
+        uses: uncovertechtalent/machinebehavior.io/.github/actions/conformity@8f5fae218f34d94a2baccb75ed5280ef8cb9cc4d # machinebehavior.io conformity, main at 2026-10-21
         with:
           root: .
           config: conformity/site-tier.json

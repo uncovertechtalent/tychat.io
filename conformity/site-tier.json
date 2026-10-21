@@ -147,6 +147,10 @@
  ],
  "compliance": {
   "source": "machinebehavior.io gate action, compliance/ (vendored unchanged from github.com/uncovertechtalent/cto-powersuit plugins/compliance/checks/ at c8e0cd9bae546f7f070b0bdf32d0d6f5cd6224bb); active once the pin in .github/workflows/conformity.yml names a machinebehavior.io commit that has it",
+  "sha256": {
+   "security_txt.py": "706137d1393f702fe7b2d9044556551ad0908bd7ef49c6798c20bdab4801aea3",
+   "no_third_party.py": "c4185783036c64e6f8fced013e7901dce65db8be322ef7356345c2378cbc34b7"
+  },
   "decided": "Stefan, 2026-10-21: both rules on warn, with the false-positive records",
   "compliance.security-txt": {
    "tier": "warn",

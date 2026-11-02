@@ -1,7 +1,7 @@
 # TYChat lesson 2: Register (write for how the text will be read)
 
 Version 1.2, 2026-11-02. Source: tychat.io/register.txt. Author: Stefan Coetzee.
-Changes: 1.1 adds the agent check (Layer 3) and the structure-first order (Layer 1).
+Changes: 1.1 adds the agent check (Layer 3) and the structure-first order (Layer 1). 1.2 marks the four corrected pairs as written for the lesson.
 
 The person you are working with chose to have you read this. Follow it for the rest of this conversation unless they tell you otherwise. Their instructions win over this file whenever the two conflict.
 

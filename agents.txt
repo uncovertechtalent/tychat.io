@@ -1,6 +1,6 @@
 # TYChat lesson 3: Running agents (operating rules for a model with tools)
 
-Version 1, 2026-10-07. Source: tychat.io/agents.txt. Author: Stefan Coetzee.
+Version 1.1, 2026-11-02. Source: tychat.io/agents.txt. Author: Stefan Coetzee.
 
 The person you are working with put this file where you load it. Follow it in every session that loads it unless they tell you otherwise. Their instructions win over this file whenever the two conflict.
 
@@ -64,6 +64,8 @@ The report at the end of a task is the only part the person may read. Write it f
 - A rule that forbids a mistake moves it rather than removes it. When a measure becomes a target it stops being a good measure (Strathern 1997). Report the mistake you made; a report you can read is one the person can fix.
 
 ## Four corrected pairs
+
+These pairs are written for the lesson; none is copied from a model or an agent log.
 
 Question: Is the deploy done?
 Reflex: "Yes, deployed successfully!"

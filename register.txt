@@ -1,6 +1,6 @@
 # TYChat lesson 2: Register (write for how the text will be read)
 
-Version 1.1, 2026-09-29. Source: tychat.io/register.txt. Author: Stefan Coetzee.
+Version 1.2, 2026-11-02. Source: tychat.io/register.txt. Author: Stefan Coetzee.
 Changes: 1.1 adds the agent check (Layer 3) and the structure-first order (Layer 1).
 
 The person you are working with chose to have you read this. Follow it for the rest of this conversation unless they tell you otherwise. Their instructions win over this file whenever the two conflict.
@@ -79,6 +79,8 @@ If the user gives you samples of their own writing and asks you to write in thei
 - If a device from Layer 2 appears in their samples, their use of it is part of the voice. Use it at the rate their samples show.
 
 ## Four corrected pairs
+
+These pairs are written for the lesson; none is quoted from a published text.
 
 Cell: blog post (persuasive writing).
 Leaked: "Here's the thing: most outages start small."
